@@ -2,7 +2,23 @@
 #include <string>
 #include "Patient.h"
 #include "Division.h"
+#include <list>
 using namespace std;
+
+istream& operator >>(istream& in, Division& div) {
+	cout << "Введите кол-во мест";
+	in >> div.places;
+}
+
+ostream& operator <<(ostream& out, Division& div) {
+	out << "Число мест:" << div.places << endl; 
+	out << "Доктора:";
+	for (Doc& doctor : div.doctors)
+		out << doctor << endl;
+	out << "Пациенты:";
+	for (Patient& patient : div.patients)
+		out << patient << endl;
+}
 
 string Dis::getTime() {
 	return time;
