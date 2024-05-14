@@ -12,10 +12,11 @@ class Patient {
 	char _doctor[100];
 	char _status[100];
 public:
-
+	 friend std::istream& operator >>(std::istream& in, Patient& pat);
+	 friend std::ostream& operator <<(std::ostream& out, Patient& pat);
 	 const char* getFio() {
 		return _fio;
-	}
+	 }
 	 void setFio(const char* fio) {
 		 strncpy(_fio, fio, 100);
 	 }
