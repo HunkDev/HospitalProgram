@@ -1,7 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include "database.h"
-#include "pacient.h"
+#include "Patient.h"
 
 bool flag = true;
 
