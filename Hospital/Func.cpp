@@ -2,30 +2,60 @@
 #include <string>
 #include "Patient.h"
 #include "Division.h"
+#include "disease.h"
+#include "doctor.h"
 using namespace std;
 
-string Dis::getTime() {
-	return time;
+istream operator >>(istream& in, Patient& pat) {
+	cout << "Введите ФИО:";
+	in >> pat._fio;
+	cout << "Введите пол:";
+	in >> pat._gender;
+	cout << "Введите возраст:";
+	in >> pat._age;
+	cout << "Введите диагноз:";
+	in >> pat._diagnosis;
+	//cout << "Введите время поступления:";
+	//in >> pat._time;
+	cout << "Введите ФИО врача:";
+	in >> pat._doctor;
+	cout << "Введите статус:";
+	in >> pat._status;
 }
 
-void Dis::setTime(string _time) {
-	time = _time;
+ostream& operator <<(ostream& out, Patient& pat) {
+	out << " ФИО: " << pat._fio << " Пол: " << pat._gender << " Возраст: " << pat._age << " Диагноз: " << pat._diagnosis << " ФИО врача: " << pat._doctor << " Статус: " << pat._status << endl;
 }
 
-string Doc::getDisease() {
-	return disease;
+istream& operator >>(istream& in, Division& div) {
+	cout << "Введите кол-во мест";
+	in >> div.places;
 }
 
-string Doc::getPatient() {
-	return patient;
+ostream& operator <<(ostream& out, Division& div) {
+	out << "Число мест:" << div.places << endl; 
+	out << "Доктора:";
+	for (Doctor& doctor : div.doctors)
+		out << doctor << endl;
+	out << "Пациенты:";
+	for (Patient& patient : div.patients)
+		out << patient << endl;
 }
 
-void Doc::setDisease(string _disease) {
-	disease = _disease;
+int Disease::getRecoveryTime() {
+	return recoveryTime;
 }
 
-void Doc::setPatient(string _patient) {
-	patient = _patient;
+void Disease::setRecoveryTime(int time) {
+	recoveryTime = time;
+}
+
+void Doctor::addSpecialty(const char* specialty) {
+	specialties.push_back(specialty);
+}
+
+void Doctor::addPatient(const Patient& patient) {
+	patients.push_back(patient);
 }
 
 void Division::attachPat(Patient& patient) {
