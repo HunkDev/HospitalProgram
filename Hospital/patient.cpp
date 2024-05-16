@@ -1,72 +1,17 @@
 #include <iostream>
 #include <string>
+#include "Patient.h"
 
-class Patient {
-	int _age;
-	int _time;
+std::string Patient::getFio() { return _fio; }
+std::string Patient::getGender() { return _gender; }
+int Patient::getAge() { return _age; }
+std::string Patient::getDia() { return _diagnosis; }
+std::string Patient::getDoctor() { return _doctor; }
+std::string Patient::getStatus() { return _status; }
 
-	std::string _fio;
-	std::string _gender;
-	std::string _diagnoz;
-	std::string _doctor;
-	std::string _status;
-
-private:
-	// Getters
-	std::string fio() {
-		return _fio;
-	}
-
-	std::string gender() {
-		return _gender;
-	}
-
-	std::string diagnoz() {
-		return _diagnoz;
-	}
-
-	std::string doctor() {
-		return _doctor;
-	}
-
-	std::string status() {
-		return _status;
-	}
-
-	int age() {
-		return _age;
-	}
-
-	int time() {
-		return _time;
-	}
-
-	// Setters
-	void set_fio(std::string fio) {
-		_fio = fio;
-	}
-
-	void set_gender(std::string gender) {
-		_gender = gender;
-	}
-
-	void set_diagnoz(std::string diagnoz) {
-		_diagnoz = diagnoz;
-	}
-
-	void set_doctor(std::string doctor) {
-		_doctor = doctor;
-	}
-
-	void set_status(std::string status) {
-		_status = status;
-	}
-
-	void set_age(int age) {
-		_age = age;
-	}
-
-	void set_time(int time) {
-		_time = time;
-	}
-};
+void Patient::setFio(std::string fio) { _fio = fio; }
+void Patient::setGender(std::string gender) { _gender = gender; }
+void Patient::setAge(int age) { _age = age; }
+void Patient::setDia(std::string diagnosis) { _diagnosis = diagnosis; }
+void Patient::setDoctor(std::string doctor) { _doctor = doctor; }
+void Patient::setStatus(std::string status) { _status = status; }
