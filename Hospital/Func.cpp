@@ -4,6 +4,7 @@
 #include "Division.h"
 #include "disease.h"
 #include "doctor.h"
+#include <list>
 using namespace std;
 
 istream operator >>(istream& in, Patient& pat) {
@@ -26,7 +27,6 @@ istream operator >>(istream& in, Patient& pat) {
 ostream& operator <<(ostream& out, Patient& pat) {
 	out << " ÔÈÎ: " << pat._fio << " Ïîë: " << pat._gender << " Âîçðàñò: " << pat._age << " Äèàãíîç: " << pat._diagnosis << " ÔÈÎ âðà÷à: " << pat._doctor << " Ñòàòóñ: " << pat._status << endl;
 }
-
 istream& operator >>(istream& in, Division& div) {
 	cout << "Ââåäèòå êîë-âî ìåñò";
 	in >> div.places;
