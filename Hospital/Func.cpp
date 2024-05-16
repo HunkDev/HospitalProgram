@@ -2,6 +2,7 @@
 #include <string>
 #include "Patient.h"
 #include "Division.h"
+#include <list>
 using namespace std;
 
 istream operator >>(istream& in, Patient& pat) {
