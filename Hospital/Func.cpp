@@ -5,37 +5,36 @@
 using namespace std;
 
 istream operator >>(istream& in, Patient& pat) {
-	cout << "Ââåäèòå ÔÈÎ:";
+	cout << "Ã‚Ã¢Ã¥Ã¤Ã¨Ã²Ã¥ Ã”ÃˆÃŽ:";
 	in >> pat._fio;
-	cout << "Ââåäèòå ïîë:";
+	cout << "Ã‚Ã¢Ã¥Ã¤Ã¨Ã²Ã¥ Ã¯Ã®Ã«:";
 	in >> pat._gender;
-	cout << "Ââåäèòå âîçðàñò:";
+	cout << "Ã‚Ã¢Ã¥Ã¤Ã¨Ã²Ã¥ Ã¢Ã®Ã§Ã°Ã Ã±Ã²:";
 	in >> pat._age;
-	cout << "Ââåäèòå äèàãíîç:";
+	cout << "Ã‚Ã¢Ã¥Ã¤Ã¨Ã²Ã¥ Ã¤Ã¨Ã Ã£Ã­Ã®Ã§:";
 	in >> pat._diagnosis;
-	//cout << "Ââåäèòå âðåìÿ ïîñòóïëåíèÿ:";
+	//cout << "Ã‚Ã¢Ã¥Ã¤Ã¨Ã²Ã¥ Ã¢Ã°Ã¥Ã¬Ã¿ Ã¯Ã®Ã±Ã²Ã³Ã¯Ã«Ã¥Ã­Ã¨Ã¿:";
 	//in >> pat._time;
-	cout << "Ââåäèòå ÔÈÎ âðà÷à:";
+	cout << "Ã‚Ã¢Ã¥Ã¤Ã¨Ã²Ã¥ Ã”ÃˆÃŽ Ã¢Ã°Ã Ã·Ã :";
 	in >> pat._doctor;
-	cout << "Ââåäèòå ñòàòóñ:";
+	cout << "Ã‚Ã¢Ã¥Ã¤Ã¨Ã²Ã¥ Ã±Ã²Ã Ã²Ã³Ã±:";
 	in >> pat._status;
 }
 
 ostream& operator <<(ostream& out, Patient& pat) {
-	out << " ÔÈÎ: " << pat._fio << " Ïîë: " << pat._gender << " Âîçðàñò: " << pat._age << " Äèàãíîç: " << pat._diagnosis << " ÔÈÎ âðà÷à: " << pat._doctor << " Ñòàòóñ: " << pat._status << endl;
+	out << " Ã”ÃˆÃŽ: " << pat._fio << " ÃÃ®Ã«: " << pat._gender << " Ã‚Ã®Ã§Ã°Ã Ã±Ã²: " << pat._age << " Ã„Ã¨Ã Ã£Ã­Ã®Ã§: " << pat._diagnosis << " Ã”ÃˆÃŽ Ã¢Ã°Ã Ã·Ã : " << pat._doctor << " Ã‘Ã²Ã Ã²Ã³Ã±: " << pat._status << endl;
 }
-
 istream& operator >>(istream& in, Division& div) {
-	cout << "Ââåäèòå êîë-âî ìåñò";
+	cout << "Ã‚Ã¢Ã¥Ã¤Ã¨Ã²Ã¥ ÃªÃ®Ã«-Ã¢Ã® Ã¬Ã¥Ã±Ã²";
 	in >> div.places;
 }
 
 ostream& operator <<(ostream& out, Division& div) {
-	out << "×èñëî ìåñò:" << div.places << endl; 
-	out << "Äîêòîðà:";
+	out << "Ã—Ã¨Ã±Ã«Ã® Ã¬Ã¥Ã±Ã²:" << div.places << endl; 
+	out << "Ã„Ã®ÃªÃ²Ã®Ã°Ã :";
 	for (Doc& doctor : div.doctors)
 		out << doctor << endl;
-	out << "Ïàöèåíòû:";
+	out << "ÃÃ Ã¶Ã¨Ã¥Ã­Ã²Ã»:";
 	for (Patient& patient : div.patients)
 		out << patient << endl;
 }
