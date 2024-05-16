@@ -2,6 +2,8 @@
 #include <string>
 #include "Patient.h"
 #include "Division.h"
+#include "disease.h"
+#include "doctor.h"
 #include <list>
 using namespace std;
 
@@ -44,24 +46,39 @@ string Dis::getTime() {
 	return time;
 }
 
-void Dis::setTime(string _time) {
-	time = _time;
+ostream& operator <<(ostream& out, Patient& pat) {
+	out << " ÔÈÎ: " << pat._fio << " Ïîë: " << pat._gender << " Âîçðàñò: " << pat._age << " Äèàãíîç: " << pat._diagnosis << " ÔÈÎ âðà÷à: " << pat._doctor << " Ñòàòóñ: " << pat._status << endl;
 }
 
-string Doc::getDisease() {
-	return disease;
+istream& operator >>(istream& in, Division& div) {
+	cout << "Ââåäèòå êîë-âî ìåñò";
+	in >> div.places;
 }
 
-string Doc::getPatient() {
-	return patient;
+ostream& operator <<(ostream& out, Division& div) {
+	out << "×èñëî ìåñò:" << div.places << endl; 
+	out << "Äîêòîðà:";
+	for (Doctor& doctor : div.doctors)
+		out << doctor << endl;
+	out << "Ïàöèåíòû:";
+	for (Patient& patient : div.patients)
+		out << patient << endl;
 }
 
-void Doc::setDisease(string _disease) {
-	disease = _disease;
+int Disease::getRecoveryTime() {
+	return recoveryTime;
 }
 
-void Doc::setPatient(string _patient) {
-	patient = _patient;
+void Disease::setRecoveryTime(int time) {
+	recoveryTime = time;
+}
+
+void Doctor::addSpecialty(const char* specialty) {
+	specialties.push_back(specialty);
+}
+
+void Doctor::addPatient(const Patient& patient) {
+	patients.push_back(patient);
 }
 
 void Division::attachPat(Patient& patient) {
