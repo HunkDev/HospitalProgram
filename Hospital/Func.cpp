@@ -3,6 +3,8 @@
 #include "Patient.h"
 #include "Division.h"
 #include "disease.h"
+#include "doctor.h"
+#include <list>
 using namespace std;
 
 istream& operator >>(istream& in, Patient& pat) {
