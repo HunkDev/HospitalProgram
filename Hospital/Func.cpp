@@ -7,60 +7,68 @@
 #include <list>
 using namespace std;
 
-istream operator >>(istream& in, Patient& pat) {
-	cout << "Ââåäèòå ÔÈÎ:";
+istream& operator >>(istream& in, Patient& pat) {
+	cout << "Enter name:";
 	in >> pat._fio;
-	cout << "Ââåäèòå ïîë:";
+	cout << "Enter sex:";
 	in >> pat._gender;
-	cout << "Ââåäèòå âîçðàñò:";
+	cout << "Enter age:";
 	in >> pat._age;
-	cout << "Ââåäèòå äèàãíîç:";
+	cout << "Enter diagnosis:";
 	in >> pat._diagnosis;
-	//cout << "Ââåäèòå âðåìÿ ïîñòóïëåíèÿ:";
+	//cout << "Enter time of arrival:";
 	//in >> pat._time;
-	cout << "Ââåäèòå ÔÈÎ âðà÷à:";
+	cout << "Enter doctor`s name:";
 	in >> pat._doctor;
-	cout << "Ââåäèòå ñòàòóñ:";
+	cout << "Enter status:";
 	in >> pat._status;
+	return in;
 }
 
 ostream& operator <<(ostream& out, Patient& pat) {
-	out << " ÔÈÎ: " << pat._fio << " Ïîë: " << pat._gender << " Âîçðàñò: " << pat._age << " Äèàãíîç: " << pat._diagnosis << " ÔÈÎ âðà÷à: " << pat._doctor << " Ñòàòóñ: " << pat._status << endl;
+	out << " Name: " << pat._fio << " Sex: " << pat._gender << " Age: " << pat._age << " Diagnosis: " << pat._diagnosis << " Doctor`s name: " << pat._doctor << " Status: " << pat._status << endl;
 }
-istream& operator >>(istream& in, Division& div) {
-	cout << "Ââåäèòå êîë-âî ìåñò";
+
+istream& operator >>(istream& in, Doctor& doc) {
+	cout << "Doctor`s name:";
+	string str;
+	in >> str;
+	int len = str.length();
+	if (len < 100) {
+		for (int i = 0; i < len; i++) {
+			doc.fullName[i] = str[i];
+		}
+		for (int i = 0; i < 100; i++) {
+			doc.fullName[i] = str[i];
+		}
+	}
+	else
+		for (int i = 0; i < 100; i++) {
+			doc.fullName[i] = str[i];
+		}
+	return in;
+}
+
+ostream& operator <<(ostream& out, Doctor& doc) {
+	out << "Name:" << doc.fullName << endl;
+	out << "Patients:";
+	for (Patient& pat : doc.patients) {
+		out << pat << endl;
+	}
+	return out;
+}
+
+istream& operator >>(istream& in, Division div) {
+	cout << "Free places:";
 	in >> div.places;
 }
 
-ostream& operator <<(ostream& out, Division& div) {
-	out << "×èñëî ìåñò:" << div.places << endl; 
-	out << "Äîêòîðà:";
-	for (Doc& doctor : div.doctors)
-		out << doctor << endl;
-	out << "Ïàöèåíòû:";
-	for (Patient& patient : div.patients)
-		out << patient << endl;
-}
-
-string Dis::getTime() {
-	return time;
-}
-
-ostream& operator <<(ostream& out, Patient& pat) {
-	out << " ÔÈÎ: " << pat._fio << " Ïîë: " << pat._gender << " Âîçðàñò: " << pat._age << " Äèàãíîç: " << pat._diagnosis << " ÔÈÎ âðà÷à: " << pat._doctor << " Ñòàòóñ: " << pat._status << endl;
-}
-
-istream& operator >>(istream& in, Division& div) {
-	cout << "Ââåäèòå êîë-âî ìåñò";
-	in >> div.places;
-}
-
-ostream& operator <<(ostream& out, Division& div) {
-	out << "×èñëî ìåñò:" << div.places << endl; 
-	out << "Äîêòîðà:";
+ostream& operator <<(ostream& out, Division div) {
+	out << "Free places:" << div.places << endl; 
+	out << "Doctors:";
 	for (Doctor& doctor : div.doctors)
 		out << doctor << endl;
-	out << "Ïàöèåíòû:";
+	out << "Patients:";
 	for (Patient& patient : div.patients)
 		out << patient << endl;
 }
@@ -69,16 +77,16 @@ int Disease::getRecoveryTime() {
 	return recoveryTime;
 }
 
-void Disease::setRecoveryTime(int time) {
-	recoveryTime = time;
+const char* Doctor::getFullName() {
+	return fullName;
 }
 
-void Doctor::addSpecialty(const char* specialty) {
-	specialties.push_back(specialty);
+vector<Patient> Doctor::getPatients() {
+	return patients;
 }
 
-void Doctor::addPatient(const Patient& patient) {
-	patients.push_back(patient);
+void Doctor::addPatient(const Patient& _patient) {
+	patients.push_back(_patient);
 }
 
 void Division::attachPat(Patient& patient) {
