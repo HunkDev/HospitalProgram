@@ -2,6 +2,7 @@
 #include <string>
 #include "Patient.h"
 #include "Division.h"
+#include "disease.h"
 using namespace std;
 
 istream& operator >>(istream& in, Patient& pat) {
@@ -23,20 +24,49 @@ istream& operator >>(istream& in, Patient& pat) {
 }
 
 ostream& operator <<(ostream& out, Patient& pat) {
-	out << " ФИО: " << pat._fio << " Пол: " << pat._gender << " Возраст: " << pat._age << " Диагноз: " << pat._diagnosis << " ФИО врача: " << pat._doctor << " Статус: " << pat._status << endl;
+	out << " Name: " << pat._fio << " Sex: " << pat._gender << " Age: " << pat._age << " Diagnosis: " << pat._diagnosis << " Doctor`s name: " << pat._doctor << " Status: " << pat._status << endl;
 }
 
-istream& operator >>(istream& in, Division& div) {
-	cout << "Введите кол-во мест";
+istream& operator >>(istream& in, Doctor& doc) {
+	cout << "Doctor`s name:";
+	string str;
+	in >> str;
+	int len = str.length();
+	if (len < 100) {
+		for (int i = 0; i < len; i++) {
+			doc.fullName[i] = str[i];
+		}
+		for (int i = 0; i < 100; i++) {
+			doc.fullName[i] = str[i];
+		}
+	}
+	else
+		for (int i = 0; i < 100; i++) {
+			doc.fullName[i] = str[i];
+		}
+	return in;
+}
+
+ostream& operator <<(ostream& out, Doctor& doc) {
+	out << "Name:" << doc.fullName << endl;
+	out << "Patients:";
+	for (Patient& pat : doc.patients) {
+		out << pat << endl;
+	}
+	return out;
+}
+
+istream& operator >>(istream& in, Division div) {
+	cout << "Free places:";
 	in >> div.places;
 }
 
-ostream& operator <<(ostream& out, Division& div) {
-	out << "Число мест:" << div.places << endl; 
-	out << "Доктора:";
+ostream& operator <<(ostream& out, Division div) {
+	out << "Free places:" << div.places << endl; 
+	out << "Doctors:";
 	for (Doctor& doctor : div.doctors)
 		out << doctor << endl;
-	out << "Пациенты:";
+	out << "Patients:";
 	for (Patient& patient : div.patients)
 		out << patient << endl;
 }
@@ -45,16 +75,16 @@ int Disease::getRecoveryTime() {
 	return recoveryTime;
 }
 
-string Doc::getPatient() {
-	return patient;
+const char* Doctor::getFullName() {
+	return fullName;
 }
 
-void Doc::setDisease(string _disease) {
-	disease = _disease;
+vector<Patient> Doctor::getPatients() {
+	return patients;
 }
 
-void Doc::setPatient(string _patient) {
-	patient = _patient;
+void Doctor::addPatient(const Patient& _patient) {
+	patients.push_back(_patient);
 }
 
 void Division::attachPat(Patient& patient) {
