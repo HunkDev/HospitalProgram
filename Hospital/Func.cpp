@@ -2,6 +2,9 @@
 #include <string>
 #include "Patient.h"
 #include "Division.h"
+#include "disease.h"
+#include "doctor.h"
+#include <list>
 using namespace std;
 
 istream& operator >>(istream& in, Patient& pat) {
@@ -23,38 +26,43 @@ istream& operator >>(istream& in, Patient& pat) {
 }
 
 ostream& operator <<(ostream& out, Patient& pat) {
-	out << " ФИО: " << pat._fio << " Пол: " << pat._gender << " Возраст: " << pat._age << " Диагноз: " << pat._diagnosis << " ФИО врача: " << pat._doctor << " Статус: " << pat._status << endl;
+	out << " пїЅпїЅпїЅ: " << pat._fio << " пїЅпїЅпїЅ: " << pat._gender << " пїЅпїЅпїЅпїЅпїЅпїЅпїЅ: " << pat._age << " пїЅпїЅпїЅпїЅпїЅпїЅпїЅ: " << pat._diagnosis << " пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ: " << pat._doctor << " пїЅпїЅпїЅпїЅпїЅпїЅ: " << pat._status << endl;
 }
 
 istream& operator >>(istream& in, Division& div) {
-	cout << "Введите кол-во мест";
+	cout << "пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ-пїЅпїЅ пїЅпїЅпїЅпїЅ";
 	in >> div.places;
 }
 
 ostream& operator <<(ostream& out, Division& div) {
-	out << "Число мест:" << div.places << endl; 
-	out << "Доктора:";
+	out << "пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ:" << div.places << endl; 
+	out << "пїЅпїЅпїЅпїЅпїЅпїЅпїЅ:";
 	for (Doctor& doctor : div.doctors)
 		out << doctor << endl;
-	out << "Пациенты:";
+	out << "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ:";
 	for (Patient& patient : div.patients)
 		out << patient << endl;
 }
 
 int Disease::getRecoveryTime() {
 	return recoveryTime;
+
 }
 
-string Doc::getPatient() {
-	return patient;
+int Disease::getRecoveryTime() {
+	return recoveryTime;
 }
 
-void Doc::setDisease(string _disease) {
-	disease = _disease;
+void Disease::setRecoveryTime(int time) {
+	recoveryTime = time;
 }
 
-void Doc::setPatient(string _patient) {
-	patient = _patient;
+void Doctor::addSpecialty(const char* specialty) {
+	specialties.push_back(specialty);
+}
+
+void Doctor::addPatient(const Patient& patient) {
+	patients.push_back(patient);
 }
 
 void Division::attachPat(Patient& patient) {
