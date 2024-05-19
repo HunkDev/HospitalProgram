@@ -29,4 +29,7 @@ public:
 	 void setDia(std::string diagnosis);
 	 void setDoctor(std::string doctor);
 	 void setStatus(std::string status);
+
+	 friend Patient search_patient(class Patient* arr, int n, std::string patient);
+	 friend void delete_patient(class Patient** arr, int* n);
 };
