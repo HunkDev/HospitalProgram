@@ -59,7 +59,9 @@ ostream& operator <<(ostream& out, Doctor& doc) {
 }
 
 istream& operator >>(istream& in, Division& div) {
-	cout << "Free places:";
+	cout << "Name of division: ";
+	in >> div.name;
+	cout << "Free places: ";
 	in >> div.places;
 }
 
