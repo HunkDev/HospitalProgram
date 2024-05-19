@@ -58,12 +58,12 @@ ostream& operator <<(ostream& out, Doctor& doc) {
 	return out;
 }
 
-istream& operator >>(istream& in, Division div) {
+istream& operator >>(istream& in, Division& div) {
 	cout << "Free places:";
 	in >> div.places;
 }
 
-ostream& operator <<(ostream& out, Division div) {
+ostream& operator <<(ostream& out, Division& div) {
 	out << "Free places:" << div.places << endl; 
 	out << "Doctors:";
 	for (Doctor& doctor : div.doctors)
