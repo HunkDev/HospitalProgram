@@ -13,7 +13,7 @@ class Patient {
 	std::string _doctor;
 	std::string _status;
 public:
-	 friend std::istream operator >>(std::istream& in, Patient& pat);
+	 friend std::istream& operator >>(std::istream& in, Patient& pat);
 	 friend std::ostream& operator <<(std::ostream& out, Patient& pat);
 
 	 int getAge();
