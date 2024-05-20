@@ -128,3 +128,8 @@ void delete_patient(class Patient** arr, int* n) {
         return;
     }
 }
+void advance_time(class Patient* arr, int n, int days) {
+    for (int i = 0; i < days; i++) {
+        arr.advance_day();
+    }
+}
