@@ -10,3 +10,4 @@ void read_patients(class Patient** arr, int* n);
 void add_patient(class Patient** arr, int* n);
 Patient search_patient(class Patient* arr, int n, std::string patient);
 void delete_patient(class Patient** arr, int* n);
+void advance_time(class Patient* arr, int n, int days);

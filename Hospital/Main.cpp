@@ -24,7 +24,7 @@ int main() {
 			return 0;
 		}
 		switch(key_div){
-			//Методы бд для отделения
+			//ГЊГҐГІГ®Г¤Г» ГЎГ¤ Г¤Г«Гї Г®ГІГ¤ГҐГ«ГҐГ­ГЁГї
 		}
 		break;
 
@@ -36,33 +36,27 @@ int main() {
 			return 0;
 		}
 		switch (key_doc) {
-			//Методы бд для врача
+			//ГЊГҐГІГ®Г¤Г» ГЎГ¤ Г¤Г«Гї ГўГ°Г Г·Г 
 		}
 		break;
 	case 3:
-		int key_pat;
-		cout << "1-Create, 2-Save, 3-read, 4-edit, 5-delete, 6-edit, 7-exit" << endl;
-		cin >> key_pat;
-		if (!key_pat) {
-			cout << "Error" << endl;
-			return 0;
-		}
-		switch (key_pat) {
-		bool w = true;
+    bool w = true;
 		Patient* temp;
 		int n;
+		switch (key_pat) {
 		while (w) {
-			int key_pat;
-			cout << "1-Create, 2-read, 3-search, 4-add, 5-delete, 6-edit, 7-exit" << endl;
-			if (!(cin >> key_pat).good()) {
-				cout << "Error" << endl;
-				return 0;
-			}
+      int key_pat;
+		  cout << "1-Create, 2-Save, 3-read, 4-edit, 5-delete, 6-edit, 7-exit" << endl;
+		  cin >> key_pat;
+		  if (!key_pat) {
+			  cout << "Error" << endl;
+			  return 0;
+		  }
 			switch (key_pat) {
 			case 1:
-				cout << "n=";
-				if (!(cin >> n).good()) {
-					cout << "Error" << endl;
+				cout В« "n=";
+				if (!(cin В» n).good()) {
+					cout В« "Error" В« endl;
 					return 0;
 				}
 				create_patients(&temp, &n);
@@ -73,22 +67,22 @@ int main() {
 			case 3:
 			{
 				string str;
-				if (!(cin >> str).good()) {
-					cout << "Error" << endl;
+				if (!(cin В» str).good()) {
+					cout В« "Error" В« endl;
 					return 0;
 				}
-				cout << "n=";
-				if (!(cin >> n).good()) {
-					cout << "Error" << endl;
+				cout В« "n=";
+				if (!(cin В» n).good()) {
+					cout В« "Error" В« endl;
 					return 0;
 				}
 				search_patient(temp, n, str);
 				break;
 			}
 			case 4:
-				cout << "n=";
-				if (!(cin >> n).good()) {
-					cout << "Error" << endl;
+				cout В« "n=";
+				if (!(cin В» n).good()) {
+					cout В« "Error" В« endl;
 					return 0;
 				}
 				add_patient(&temp, &n);
@@ -104,7 +98,6 @@ int main() {
 				break;
 			}
 		}
-		break;
 	case 4:
 		int key_dis;
 		cout << "1-Create, 2-read, 3-search, 4-edit, 5-delete, 6-edit, 7-exit" << endl;
@@ -113,7 +106,7 @@ int main() {
 			return 0;
 		}
 		switch (key_dis) {
-			//Методы бд для болезни
+			//ГЊГҐГІГ®Г¤Г» ГЎГ¤ Г¤Г«Гї ГЎГ®Г«ГҐГ§Г­ГЁ
 		}
 		break;
 	}

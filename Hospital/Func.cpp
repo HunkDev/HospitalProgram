@@ -96,6 +96,11 @@ void Division::attachPat(Patient& patient) {
 	places -= 1;
 }
 
+void Division::attachDoc(Doctor& doctor) {
+	doctors.push_back(doctor);
+	//places_doctors -= 1;
+}
+
 void Division::setPlaces(int place) {
 	places = place;
 }
