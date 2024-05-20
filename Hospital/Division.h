@@ -7,6 +7,7 @@
 
 class Division {
 private:
+	std::string name;
 	int places;
 	std::list<Patient&> patients;
 	std::list<Doctor&> doctors;
@@ -17,4 +18,7 @@ public:
 	void attachPat(Patient& patient);
 	void setPlaces(int place);
 	int getPlace();
+
+	friend Division search_division(class Division* arr, int n, std::string division);
+	friend void delete_division(class Division** arr, int* n);
 };
