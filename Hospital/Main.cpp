@@ -43,7 +43,6 @@ int main() {
     bool w = true;
 		Patient* temp;
 		int n;
-		switch (key_pat) {
 		while (w) {
       int key_pat;
 		  cout << "1-Create, 2-Save, 3-read, 4-edit, 5-delete, 6-edit, 7-exit" << endl;
@@ -54,9 +53,9 @@ int main() {
 		  }
 			switch (key_pat) {
 			case 1:
-				cout « "n=";
-				if (!(cin » n).good()) {
-					cout « "Error" « endl;
+				cout << "n=";
+				if (!(cin >> n).good()) {
+					cout << "Error" << endl;
 					return 0;
 				}
 				create_patients(&temp, &n);
@@ -67,22 +66,22 @@ int main() {
 			case 3:
 			{
 				string str;
-				if (!(cin » str).good()) {
-					cout « "Error" « endl;
+				if (!(cin >> str).good()) {
+					cout << "Error" << endl;
 					return 0;
 				}
-				cout « "n=";
-				if (!(cin » n).good()) {
-					cout « "Error" « endl;
+				cout << "n=";
+				if (!(cin >> n).good()) {
+					cout << "Error" << endl;
 					return 0;
 				}
 				search_patient(temp, n, str);
 				break;
 			}
 			case 4:
-				cout « "n=";
-				if (!(cin » n).good()) {
-					cout « "Error" « endl;
+				cout << "n=";
+				if (!(cin >> n).good()) {
+					cout << "Error" << endl;
 					return 0;
 				}
 				add_patient(&temp, &n);
