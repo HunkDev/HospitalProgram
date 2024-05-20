@@ -12,6 +12,7 @@ class Patient {
 	//time_t?
 	std::string _doctor;
 	std::string _status;
+	int _days;
 public:
 	 friend std::istream& operator >>(std::istream& in, Patient& pat);
 	 friend std::ostream& operator <<(std::ostream& out, Patient& pat);
@@ -29,6 +30,7 @@ public:
 	 void setDia(std::string diagnosis);
 	 void setDoctor(std::string doctor);
 	 void setStatus(std::string status);
+	 void advance_day();
 
 	 friend Patient search_patient(class Patient* arr, int n, std::string patient);
 	 friend void delete_patient(class Patient** arr, int* n);
