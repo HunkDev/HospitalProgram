@@ -5,6 +5,7 @@
 #include <list>
 #include <iostream>
 #include <vector>
+#include "division_database.h"
 using namespace std;
 
 istream& operator >>(istream& in, Patient &pat) {
@@ -49,22 +50,32 @@ ostream& operator <<(ostream& out, Doctor& doc) {
 }
 
 istream& operator >>(istream& in, Division& div) {
-	cout << "Name of division: ";
+		cout << "Name of division: ";
 	in >> div.name;
-	cout << "Free places: ";
+
+		cout << "Free places: ";
 	in >> div.places;
 
 	return in;
 }
 
 ostream& operator <<(ostream& out, Division& div) {
-	out << "Free places:" << div.places << endl; 
-	out << "Doctors:";
+
+		std::cout << "Name: "; 
+	out << div.name << endl;
+
+		std::cout << "Free places:";
+	out << div.places << endl; 
+
+		std::cout << "Doctors:";
 	for (Doctor& doctor : div.doctors)
 		out << doctor << endl;
-	out << "Patients:";
+	out << endl;
+		std::cout << "Patients:";
 	for (Patient& patient : div.patients)
 		out << patient << endl;
+	out << endl;
+
 
 	return out;
 }

@@ -33,8 +33,10 @@ int main() {
 	bool w;	
 	key = Timing(key);
 
+	key = 0;
+
 	if(key != 4)
-		if (!(cin >> key).good()) {
+		if (!(std::cin >> key).good()) {
 			cout << "Error" << endl;
 			return 0;
 		}
@@ -47,9 +49,8 @@ int main() {
 		w = true;
 		while (w) {
 			int key_div;
-			cout << "1-Create, 2-read, 3-search, 4-add, 5-delete, 6-exit" << endl;
-			cin >> key_div;
-			if (!(cin >> key_div).good()) {
+			cout << "1-Create, 2-write, 3-read, 4-add, 5-search, 6-delete, 7-print, 8-exit" << endl;
+			if (!(std::cin >> key_div).good()) {
 				cout << "Error #123-1242135" << endl;
 				return 0;
 			}
@@ -59,11 +60,11 @@ int main() {
 				if (!divisions.empty()) {
 					int var;
 					cout << "Divisions database will delete. Do you really want this?" << endl << "1 = yes, \t 2 = no" << endl;
-					cin >> var;
+					std::cin >> var;
 					if (var == 2)
 						break;
 					if (var == 1) {
-						division_db::create_divisions(divisions);
+						division_db::create_divisions(&divisions);
 						break;
 					}
 					else {
@@ -72,26 +73,31 @@ int main() {
 					}
 				}
 				else {
-					division_db::create_divisions(divisions);
+					division_db::create_divisions(&divisions);
 					break;
 				}
 			case 2:
-				division_db::read_divisions(divisions);
+				division_db::write_divisions(divisions);
 				break;
 			case 3:
+				division_db::read_divisions(&divisions);
+				break;
+			case 5:
 				cout << "What division you are looking for?: ";
-				cin >> division;
+				std::cin >> division;
 				division_db::search_division(divisions, division);
 				break;
 			case 4:
 				//no edit, add
-				division_db::add_division(divisions);
-				break;
-			case 5:
-				division_db::delete_division(divisions);
+				division_db::add_division(&divisions);
 				break;
 			case 6:
-					break;
+				division_db::delete_division(&divisions);
+				break;
+			case 7:
+				division_db::print_divisions(divisions);
+				break;
+			default:					
 				w = false;
 				break;
 			}
@@ -108,9 +114,8 @@ int main() {
 		}
 		while (w) {
 			int key_doc;
-			cout << "1-Create, 2-read, 3-search, 4-add, 5-delete, 6-exit" << endl;
-			cin >> key_doc;
-			if (!(cin >> key_doc).good()) {
+			cout << "1-Create, 2-write, 3-read, 4-add, 5-search, 6-delete, 7-exit" << endl;
+			if (!(std::cin >> key_doc).good()) {
 				cout << "Error #123-23415412" << endl;
 				return 0;
 			}
@@ -120,7 +125,7 @@ int main() {
 				if (!db) {
 					int var;
 					cout << "Doctors database will delete. Do you really want this?" << endl << "1 = yes, \t 2 = no" << endl;
-					cin >> var;
+					std::cin >> var;
 					if (var == 2)
 						break;
 					if (var == 1) {
@@ -138,11 +143,11 @@ int main() {
 				}
 			case 2:
 				//read_doc(&doctors, &n);
-				doctor_db::read_doc();
+				doctor_db::write_doc(db);
 				break;
 			case 3:
 				//search_doc(&doctors, &n);
-				doctor_db::search_doc(db);
+				doctor_db::read_doc();
 				break;
 			case 4:
 				//add, no edit
@@ -151,9 +156,12 @@ int main() {
 				break;
 			case 5:
 				//delete_doc(&doctors, &n);
-				doctor_db::delete_doc(db);
+				doctor_db::search_doc(db);
 				break;
 			case 6:
+				doctor_db::delete_doc(db);
+				break;
+			default:
 				w = false;
 				break;
 			}
@@ -167,22 +175,22 @@ int main() {
 		while (w) {
 			int key_pat;
 			cout << "1-Create, 2-Save, 3-read, 4-add, 5-delete, 6-exit" << endl;
-			cin >> key_pat;
+			std::cin >> key_pat;
 			if (!key_pat) {
 				cout << "Error" << endl;
 				break;
 			}
 			switch (key_pat) {
 			case 1:
-				patient_db::create_patients(temp);
+				patient_db::create_patients(&temp);
 				break;
 			case 2:
-				patient_db::read_patients(temp);
+				patient_db::read_patients(&temp);
 				break;
 			case 3:
 			{
 				string str;
-				if (!(cin >> str).good()) {
+				if (!(std::cin >> str).good()) {
 					cout << "Error" << endl;
 					break;
 				}
@@ -191,10 +199,10 @@ int main() {
 			}
 			case 4:
 
-				patient_db::add_patient(temp);
+				patient_db::add_patient(&temp);
 				break;
 			case 5:
-				patient_db::delete_patient(temp);
+				patient_db::delete_patient(&temp);
 				break;
 			case 6:
 				w = false;
@@ -204,7 +212,7 @@ int main() {
 		}
 	case 4:
 		vector<Patient> patients;
-		patient_db::read_patients(patients);
+		patient_db::read_patients(&patients);
 		int s = (patients.size()-1);
 		for (int i = 0; i < s; i++) {
 			patients[i].advance_day();
