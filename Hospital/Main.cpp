@@ -2,12 +2,10 @@
 #include "Patient.h"
 #include "doctor.h"
 #include "Division.h"
-#include "patient.cpp"
-#include "Func.cpp"
-#include "database.cpp"
+#include "database.h"
 #include "division_database.h"
 #include "doctors_db.h"
-#include "time.cpp"
+#include "time.h"
 
 using namespace std;
 

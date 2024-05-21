@@ -1,5 +1,4 @@
 #pragma once
-#include <iostream>
 #include <list>
 
 #include "Patient.h"
@@ -14,8 +13,8 @@ private:
 public:
 	friend std::istream& operator >>(std::istream& in, Division& div);
 	friend std::ostream& operator <<(std::ostream& out, Division& div);
-	void attachDoc(Doctor doctor);
-	void attachPat(Patient patient);
+	void attachDoc(const Doctor& doctor);
+	void attachPat(const Patient& patient);
 	void setPlaces(int place);
 	int getPlace();
 	std::string get_name();

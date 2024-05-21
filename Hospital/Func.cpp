@@ -1,4 +1,3 @@
-#include <stdio.h>
 #include <string>
 #include "Patient.h"
 #include "Division.h"
@@ -74,20 +73,20 @@ string Doctor::getFullName() {
 	return name;
 }
 
-vector<Patient> Doctor::getPatients() {
+const vector<Patient> Doctor::getPatients() const {
 	return patients;
 }
 
-void Doctor::addPatient(const Patient _patient) {
+void Doctor::addPatient(const Patient& _patient) {
 	patients.push_back(_patient);
 }
 
-void Division::attachPat(Patient patient) {
+void Division::attachPat(const Patient& patient) {
 	patients.push_back(patient);
 	places -= 1;
 }
 
-void Division::attachDoc(Doctor doctor) {
+void Division::attachDoc(const Doctor& doctor) {
 	doctors.push_back(doctor);
 	//places_doctors -= 1;
 }

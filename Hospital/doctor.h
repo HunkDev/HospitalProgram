@@ -10,13 +10,11 @@ private:
 public:
     friend std::istream& operator >>(std::istream& in, Doctor& doc);
     friend std::ostream& operator <<(std::ostream& out, Doctor& doc);
-    Doctor(std::string  name);
-    ~Doctor();
 
-    void addPatient(const Patient patient);
+    void addPatient(const Patient& patient);
 
     std::string getFullName();
-    std::vector<Patient> getPatients();
+    const std::vector<Patient> getPatients() const;
 
     void saveToFile(std::ofstream& file);
     void loadFromFile(std::ifstream& file);
