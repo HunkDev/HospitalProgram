@@ -8,7 +8,7 @@
 #include "Division.h"
 
 bool flag = true;
-namespace patient_db {
+namespace division_db {
     void create_divisions(std::vector<Division> arr) {
         int n;
         std::cout << "Enter number of divisions = ";
