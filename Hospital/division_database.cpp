@@ -68,11 +68,15 @@ namespace division_db {
         arr->push_back({c});
     }
 
-    Division search_division(std::vector<Division> arr, std::string division) {
+    void search_division(std::vector<Division> arr) {
         if (arr.empty()) {
             std::cout << "First create list of divisions with command 'create'" << std::endl;
-            return Division();
+            return;
         }
+
+        std::string division;
+        std::cout << "What division you are looking for?: ";
+        std::cin >> division;
 
         division = to_lower(division);
         bool flag = false;
@@ -85,11 +89,10 @@ namespace division_db {
                 flag = true;
             }
         }
-        std::cout << arr[id];
-        if (flag) return arr[id];
+        if (flag) std::cout << arr[id];
         else {
             std::cout << "There are no matches" << std::endl;
-            return Division();
+            return;
         }
     }
 
@@ -105,17 +108,16 @@ namespace division_db {
         int n = arr->size();
         std::cin >> division;
         division = to_lower(division);
+        bool flag = false;
 
-        if (typeid(division_db::search_division(*arr, division)) == typeid(Division)) {
-            for (int i = 0; i < n; i++) {
-                if (division == to_lower((*arr)[i].get_name())) {
-                    id = i;
-                }
+        for (int i = 0; i < n; i++) {
+            if (division == to_lower((*arr)[i].get_name())) {
+                id = i;
+                flag = true;
             }
-            for (int i = id; i < n - 1; i++) {
-                arr[i] = arr[i + 1];
-            }
-            arr->pop_back();
+        }
+        if (flag){
+            arr->erase(arr->begin() + id);
         }
         else {
             std::cout << "This division doesn't exist" << std::endl;

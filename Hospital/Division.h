@@ -19,6 +19,6 @@ public:
 	int getPlace();
 	std::string get_name();
 
-	friend Division search_division(std::vector<Division> arr, std::string division);
+	friend void search_division(std::vector<Division> arr);
 	friend void delete_division(std::vector<Division> arr);
 };

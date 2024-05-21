@@ -83,9 +83,7 @@ int main() {
 				division_db::read_divisions(&divisions);
 				break;
 			case 5:
-				cout << "What division you are looking for?: ";
-				std::cin >> division;
-				division_db::search_division(divisions, division);
+				division_db::search_division(divisions);
 				break;
 			case 4:
 				//no edit, add
