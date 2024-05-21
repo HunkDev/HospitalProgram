@@ -172,7 +172,7 @@ int main() {
 		vector<Patient> temp;
 		while (w) {
 			int key_pat;
-			cout << "1-Create, 2-Save, 3-read, 4-add, 5-delete, 6-exit" << endl;
+			cout << "1 - Create, 2 - write, 3 - read, 4 - add, 5 - search, 6 - delete, 7 - print, 8 - exit" << endl;
 			std::cin >> key_pat;
 			if (!key_pat) {
 				cout << "Error" << endl;
@@ -183,26 +183,27 @@ int main() {
 				patient_db::create_patients(&temp);
 				break;
 			case 2:
-				patient_db::read_patients(&temp);
+				patient_db::write_patients(temp);
 				break;
 			case 3:
+				patient_db::read_patients(&temp);
+				break;
+			case 5:
 			{
-				string str;
-				if (!(std::cin >> str).good()) {
-					cout << "Error" << endl;
-					break;
-				}
-				patient_db::search_patient(temp, str);
+				patient_db::search_patient(temp);
 				break;
 			}
 			case 4:
 
 				patient_db::add_patient(&temp);
 				break;
-			case 5:
+			case 6:
 				patient_db::delete_patient(&temp);
 				break;
-			case 6:
+			case 7:
+				patient_db::print_patients(temp);
+				break;
+			default:
 				w = false;
 				break;
 			}

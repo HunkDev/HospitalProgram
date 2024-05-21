@@ -73,11 +73,15 @@ namespace patient_db {
         arr->push_back({ c });
     }
 
-    Patient search_patient(std::vector<Patient> arr, std::string patient) {
+    void search_patient(std::vector<Patient> arr) {
         if (arr.empty()) {
             std::cout << "First create list of patients with command 'create'" << std::endl;
-            return Patient();
+            return;
         }
+
+        std::string patient;
+        std::cout << "What patient you looking for? (Enter surname): ";
+        std::cin >> patient;
 
         patient = to_lower(patient);
         bool flag = false;
@@ -90,10 +94,10 @@ namespace patient_db {
                 flag = true;
             }
         }
-        if (flag) return arr[id];
+        if (flag) std::cout << arr[id];
         else {
             std::cout << "There are no matches" << std::endl;
-            return Patient();
+            return;
         }
     }
 
@@ -109,18 +113,18 @@ namespace patient_db {
         int n = arr->size();
         std::cin >> patient;
         patient = to_lower(patient);
+        bool flag = false;
 
-        if (typeid(patient_db::search_patient(*arr, patient)) == typeid(Patient)) {
-            for (int i = 0; i < n; i++) {
-                if (patient == to_lower((*arr)[i].getSurname())) {
-                    id = i;
-                }
+        for (int i = 0; i < n; i++) {
+            if (patient == to_lower((*arr)[i].getName())) {
+                id = i;
+                flag = true;
             }
-            for (int i = id; i < n - 1; i++) {
-                arr[i] = arr[i + 1];
-            }
-            arr->pop_back();
         }
+        if (flag) {
+            arr->erase(arr->begin() + id);
+        }
+        
         else {
             std::cout << "This patient doesn't exist" << std::endl;
             return;

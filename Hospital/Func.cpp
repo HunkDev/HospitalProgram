@@ -29,7 +29,20 @@ istream& operator >>(istream& in, Patient &pat) {
 }
 
 ostream& operator <<(ostream& out, Patient& pat) {
-	out << " Name: " << pat._name << "Surname: " << pat._surname << " Gender: " << pat._gender << " Age: " << pat._age << " Diagnosis: " << pat._diagnosis << " Doctor`s name: " << pat._doctor << " Status: " << pat._status << endl;
+	cout << " Name: ";
+	out << pat._name << endl;
+	cout << " Surname: ";
+	out << pat._surname << endl;
+	cout << " Gender: ";
+	out << pat._gender << endl;
+	cout << " Age: ";
+	out << pat._age << endl;
+	cout << " Diagnosis: ";
+	out << pat._diagnosis << endl;
+	cout << " Doctor`s name: ";
+	out << pat._doctor << endl;
+	cout << " Status: ";
+	out << pat._status << endl;
 	return out;
 }
 
