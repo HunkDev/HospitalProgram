@@ -128,12 +128,13 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="database.cpp" />
+    <ClCompile Include="division_database.cpp" />
+    <ClCompile Include="doctors_db.cpp" />
     <ClCompile Include="Func.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="patient.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\..\..\..\Downloads\disease.h" />
     <ClInclude Include="..\..\..\..\..\..\Downloads\doctor.h" />
     <ClInclude Include="database.h" />
     <ClInclude Include="disease.h" />

@@ -1,6 +1,5 @@
 #include <iostream>
 #include "Patient.h"
-#include "disease.h"
 #include "doctor.h"
 #include "Division.h"
 #include "patient.cpp"
@@ -11,7 +10,7 @@
 using namespace std;
 
 int main() {
-	cout << "1-Division, 2-Doctor, 3-Patient, 4-Disease" << endl;
+	cout << "1-Division, 2-Doctor, 3-Patient" << endl;
 	int key;
 	if (!(cin >> key).good()) {
 		cout << "Error" << endl;
@@ -155,16 +154,5 @@ int main() {
 				break;
 			}
 		}
-	case 4:
-		int key_dis;
-		cout << "1-Create, 2-read, 3-search, 4-edit, 5-delete, 6-edit, 7-exit" << endl;
-		if (!(cin >> key_dis).good()) {
-			cout << "Error" << endl;
-			return 0;
-		}
-		switch (key_dis) {
-			//Ìåòîäû áä äëÿ áîëåçíè
-		}
-		break;
 	}
 }	

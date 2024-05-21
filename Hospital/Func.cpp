@@ -2,7 +2,6 @@
 #include <string>
 #include "Patient.h"
 #include "Division.h"
-#include "disease.h"
 #include "doctor.h"
 #include <list>
 using namespace std;
@@ -73,10 +72,6 @@ ostream& operator <<(ostream& out, Division& div) {
 	out << "Patients:";
 	for (Patient& patient : div.patients)
 		out << patient << endl;
-}
-
-int Disease::getRecoveryTime() {
-	return recoveryTime;
 }
 
 const char* Doctor::getFullName() {

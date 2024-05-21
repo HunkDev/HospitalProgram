@@ -19,7 +19,7 @@ void Patient::advance_day() {
 	if (_status == "hospitalized") {
 		_days--;
 		if (_days <= 0) {
-			status = "discharged";
+			_status = "discharged";
 		}
 	}
 }
