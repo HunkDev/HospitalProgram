@@ -119,6 +119,7 @@ namespace patient_db {
             for (int i = id; i < n - 1; i++) {
                 arr[i] = arr[i + 1];
             }
+            arr.pop_back();
         }
         else {
             std::cout << "This patient doesn't exist" << std::endl;
@@ -128,6 +129,18 @@ namespace patient_db {
     void advance_time(std::vector<Patient> arr, int days) {
         for (int i = 0; i < days; i++) {
             arr[i].advance_day();
+        }
+    }
+
+    void print_patients(std::vector<Patient> arr) {
+        if (arr.empty()) {
+            std::cout << "List of patients doesnt exist" << std::endl;
+            return;
+        }
+
+        int n = arr.size();
+        for (int i = 0;i < n; i++) {
+            std::cout << arr[i] << std::endl;
         }
     }
 }
