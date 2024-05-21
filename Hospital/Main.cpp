@@ -18,9 +18,10 @@ int main() {
 	}
 	switch (key) {
 	case 1:
+	{
 		bool w = true;
 		int n;
-		Division* divisions;
+		vector<Division> divisions;
 		while (w) {
 			int key_div;
 			cout << "1-Create, 2-read, 3-search, 4-edit, 5-delete, 6-edit, 7-exit" << endl;
@@ -32,20 +33,27 @@ int main() {
 			switch (key_div) {
 				//Ìåòîäû áä äëÿ îòäåëåíèÿ
 			case 1:
-				create_divisions(&divisions, &n);
+				division_db::create_divisions(divisions);
 				break;
 			case 2:
-				read_divisions(&divisions, &n);
+				division_db::read_divisions(divisions);
 				break;
 			case 3:
-				search_division(&divisions, &n);
+			{
+				string str;
+				if (!(cin >> str).good()) {
+					cout << "Error" << endl;
+					return 0;
+				}
+				division_db::search_division(divisions, str);
 				break;
+			}
 			case 4:
 				//no edit, add
-				add_division(&divisions, &n);
+				division_db::add_division(divisions);
 				break;
 			case 5:
-				delete_division(&divisions, &n);
+				division_db::delete_division(divisions);
 				break;
 			case 6:
 				//wtf
@@ -56,7 +64,7 @@ int main() {
 			}
 		}
 		break;
-
+	}
 	case 2:
 		bool w = true;
 		int n;
@@ -98,7 +106,7 @@ int main() {
 		break;
 	case 3:
     bool w = true;
-		Patient* temp;
+		vector<Patient> temp;
 		int n;
 		while (w) {
       int key_pat;
@@ -110,15 +118,10 @@ int main() {
 		  }
 			switch (key_pat) {
 			case 1:
-				cout << "n=";
-				if (!(cin >> n).good()) {
-					cout << "Error" << endl;
-					return 0;
-				}
-				create_patients(&temp, &n);
+				patient_db::create_patients(temp);
 				break;
 			case 2:
-				read_patients(&temp, &n);
+				patient_db::read_patients(temp);
 				break;
 			case 3:
 			{
@@ -127,24 +130,15 @@ int main() {
 					cout << "Error" << endl;
 					return 0;
 				}
-				cout << "n=";
-				if (!(cin >> n).good()) {
-					cout << "Error" << endl;
-					return 0;
-				}
-				search_patient(temp, n, str);
+				patient_db::search_patient(temp, str);
 				break;
 			}
 			case 4:
-				cout << "n=";
-				if (!(cin >> n).good()) {
-					cout << "Error" << endl;
-					return 0;
-				}
-				add_patient(&temp, &n);
+
+				patient_db::add_patient(temp);
 				break;
 			case 5:
-				delete_patient(&temp, &n);
+				patient_db::delete_patient(temp);
 				break;
 			case 6:
 
