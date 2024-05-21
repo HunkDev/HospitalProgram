@@ -5,7 +5,8 @@
 #include <cstring>
 
 class Patient {
-	std::string _fio;
+	std::string _name;
+	std::string _surname;
 	std::string _gender;
 	int _age;
 	std::string _diagnosis;
@@ -18,13 +19,15 @@ public:
 	 friend std::ostream& operator <<(std::ostream& out, Patient& pat);
 
 	 int getAge();
-	 std::string getFio();
+	 std::string getSurname();
+	 std::string getName();
 	 std::string getGender();
 	 std::string getDia();
 	 std::string getDoctor();
 	 std::string getStatus();
 
-	 void setFio(std::string fio);
+	 void setName(std::string name);
+	 void setSurname(std::string surname);
 	 void setGender(std::string gender);
 	 void setAge(int age);
 	 void setDia(std::string diagnosis);

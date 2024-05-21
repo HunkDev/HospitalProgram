@@ -8,8 +8,10 @@ using namespace std;
 
 istream& operator >>(istream& in, Patient& pat) {
 	cout << "Enter name:";
-	in >> pat._fio;
-	cout << "Enter sex:";
+	in >> pat._name;
+	cout << "Enter surname:";
+	in >> pat._surname;
+	cout << "Enter gender:";
 	in >> pat._gender;
 	cout << "Enter age:";
 	in >> pat._age;
@@ -25,7 +27,7 @@ istream& operator >>(istream& in, Patient& pat) {
 }
 
 ostream& operator <<(ostream& out, Patient& pat) {
-	out << " Name: " << pat._fio << " Sex: " << pat._gender << " Age: " << pat._age << " Diagnosis: " << pat._diagnosis << " Doctor`s name: " << pat._doctor << " Status: " << pat._status << endl;
+	out << " Name: " << pat._name << "Surname: " << pat._surname << " Gender: " << pat._gender << " Age: " << pat._age << " Diagnosis: " << pat._diagnosis << " Doctor`s name: " << pat._doctor << " Status: " << pat._status << endl;
 }
 
 istream& operator >>(istream& in, Doctor& doc) {
