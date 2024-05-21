@@ -14,71 +14,67 @@ std::string to_lower(const std::string& str) {
     return result;
 }
 
-void create_patients(class Patient** arr, int* n) {
+void create_patients(std::vector<Patient> arr) {
+    int n;
     std::cout << "Enter number of patients = ";
-    std::cin >> *n;
-    if (*n <= 0) return;
+    std::cin >> n;
+    if (n <= 0) return;
 
-    *arr = new Patient[*n];
-    for (int i = 0;i < *n; i++) {
-        std::cin >> (*arr)[i];
+    Patient patient;
+    for (int i = 0;i < n; i++) {
+        std::cin >> patient;
+        arr.push_back({ patient });
     }
 }
 
-void write_patients(const class Patient* arr, int n) {
-    if (n <= 0) return;
+void write_patients(std::vector<Patient> arr) {
+    if (arr.empty()) return;
 
     std::ofstream out;
     out.open("patients.txt");
     if (!out) return;
 
-    flag = false;
+    int n = arr.size();
     out << n << std::endl;
 
-    for (int i = 0; i < n; i++) out << arr[i];
+    for (int i = 0; i < n; i++) {
+        out << arr[i] << std::endl;
+    }
 
-    flag = true;
     out.close();
 }
 
-void read_patients(class Patient** arr, int* n) {
+void read_patients(std::vector<Patient> arr) {
     std::ifstream in("patients.txt");
     if (!in) return;
 
-    flag = false;
-    in >> *n;
-    if (*n <= 0) return;
+    int n;
+    in >> n;
+    if (n <= 0) return;
 
-    *arr = new Patient[*n];
-    for (int i = 0;i < *n; i++)
-        in >> (*arr)[i];
+    arr = {};
+    Patient patient;
+    for (int i = 0;i < n; i++) {
+        in >> patient;
+        arr.push_back({ patient });
+    }
 
-    flag = true;
     in.close();
 }
 
-void add_patient(class Patient** arr, int* n) {
-    if (!*arr) {
-        std::cout << "First create list of patients with command 'create'" << std::endl;
+void add_patient(std::vector<Patient> arr) {
+    if (arr.empty()) {
+        std::cout << "First create list of patient with command 'create'" << std::endl;
         return;
-    }
-
-    Patient* tempArr = new Patient[*n + 1];
-    for (int i = 0; i < *n; i++) {
-        tempArr[i] = (*arr)[i];
     }
 
     Patient c;
     std::cin >> c;
-    tempArr[*n] = c;
-
-    delete[] * arr;
-    *arr = tempArr;
-    (*n)++;
+    arr.push_back({ c });
 }
 
-Patient search_patient(class Patient* arr, int n, std::string patient) {
-    if (!arr) {
+Patient search_patient(std::vector<Patient> arr, std::string patient) {
+    if (arr.empty()) {
         std::cout << "First create list of patients with command 'create'" << std::endl;
         return;
     }
@@ -86,9 +82,10 @@ Patient search_patient(class Patient* arr, int n, std::string patient) {
     patient = to_lower(patient);
     bool flag = false;
     int id = -1;
+    int n = arr.size();
 
     for (int i = 0; i < n; i++) {
-        if (patient == to_lower(arr[i]._fio)) {
+        if (patient == to_lower(arr[i].getFio())) {
             id = i;
             flag = true;
         }
@@ -100,36 +97,36 @@ Patient search_patient(class Patient* arr, int n, std::string patient) {
     }
 }
 
-void delete_patient(class Patient** arr, int* n) {
-    if (!*arr) {
+void delete_patient(std::vector<Patient> arr) {
+    if (arr.empty()) {
         std::cout << "List of patients doesnt exist" << std::endl;
         return;
     }
 
-    std::cout << "Enter the fio of patient you want to delete: ";
+    std::cout << "Enter the name of patient you want to delete: ";
     std::string patient;
     int id;
+    int n = arr.size();
     std::cin >> patient;
     patient = to_lower(patient);
 
-    if (typeid(search_patient(*arr, *n, patient)) == typeid(Patient)) {
-        for (int i = 0; i < *n; i++) {
-            if (patient == to_lower((*arr)[i]._fio)) {
+    if (typeid(search_patient(arr, patient)) == typeid(Patient)) {
+        for (int i = 0; i < n; i++) {
+            if (patient == to_lower(arr[i].getFio())) {
                 id = i;
             }
         }
-        for (int i = id; i < *n - 1; i++) {
-            (*arr)[i] = (*arr)[i + 1];
+        for (int i = id; i < n - 1; i++) {
+            arr[i] = arr[i + 1];
         }
-        (*n)--;
     }
-    else{
+    else {
         std::cout << "This patient doesn't exist" << std::endl;
         return;
     }
 }
-void advance_time(class Patient* arr, int n, int days) {
+void advance_time(std::vector<Patient> arr, int days) {
     for (int i = 0; i < days; i++) {
-        arr.advance_day();
+        arr[i].advance_day();
     }
 }
