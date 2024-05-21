@@ -1,13 +1,14 @@
 #pragma once
 
 #include <iostream>
+#include <vector>
 
 std::string to_lower(const std::string& str);
 
-void create_patients(class Patient** arr, int* n);
-void write_patients(const class Patient* arr, int n);
-void read_patients(class Patient** arr, int* n);
-void add_patient(class Patient** arr, int* n);
-Patient search_patient(class Patient* arr, int n, std::string patient);
-void delete_patient(class Patient** arr, int* n);
-void advance_time(class Patient* arr, int n, int days);
+void create_patients(std::vector<Patient> arr);
+void write_patients(std::vector<Patient> arr);
+void read_patients(std::vector<Patient> arr);
+void add_patient(std::vector<Patient> arr);
+Patient search_patient(std::vector<Patient> arr, std::string patient);
+void delete_patient(std::vector<Patient> arr);
+void advance_time(std::vector<Patient> arr, int days);
