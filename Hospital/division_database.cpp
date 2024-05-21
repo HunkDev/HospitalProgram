@@ -114,10 +114,23 @@ namespace division_db {
             for (int i = id; i < n - 1; i++) {
                 arr[i] = arr[i + 1];
             }
+            arr.pop_back();
         }
         else {
             std::cout << "This division doesn't exist" << std::endl;
             return;
+        }
+    }
+
+    void print_divisions(std::vector<Division> arr) {
+        if (arr.empty()) {
+            std::cout << "List of divisions doesnt exist" << std::endl;
+            return;
+        }
+
+        int n = arr.size();
+        for (int i = 0;i < n; i++) {
+            std::cout << arr[i] << std::endl;
         }
     }
 }

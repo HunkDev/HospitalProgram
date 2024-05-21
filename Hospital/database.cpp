@@ -130,4 +130,16 @@ namespace patient_db {
             arr[i].advance_day();
         }
     }
+
+    void print_patients(std::vector<Patient> arr) {
+        if (arr.empty()) {
+            std::cout << "List of patients doesnt exist" << std::endl;
+            return;
+        }
+
+        int n = arr.size();
+        for (int i = 0;i < n; i++) {
+            std::cout << arr[i] << std::endl;
+        }
+    }
 }
