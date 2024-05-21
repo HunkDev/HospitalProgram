@@ -1,4 +1,5 @@
 #include <iostream>
+#include <string>
 #include <fstream>
 #include <typeinfo>
 #include <vector>
@@ -8,7 +9,7 @@
 
 bool flag = true;
 namespace patient_db {
-    void create_divisions(std::vector<Division> *arr) {
+    void create_divisions(std::vector<Division> arr) {
         int n;
         std::cout << "Enter number of divisions = ";
         std::cin >> n;
@@ -17,7 +18,7 @@ namespace patient_db {
         Division division;
         for (int i = 0;i < n; i++) {
             std::cin >> division;
-            *arr.push_back({ division.get_name(), division.getPlace(), {}, {}});
+            arr.push_back({division});
         }
     }
 
@@ -31,14 +32,14 @@ namespace patient_db {
         int n = arr.size();
         out << n << std::endl;
 
-        for (const auto& str : arr) {
-            out << str << std::endl;
+        for (int i = 0; i < n; i++) {
+            out << arr[i] << std::endl;
         }
 
         out.close();
     }
 
-    void read_divisions(std::vector<Division>* arr) {
+    void read_divisions(std::vector<Division> arr) {
         std::ifstream in("divisions.txt");
         if (!in) return;
 
@@ -46,17 +47,17 @@ namespace patient_db {
         in >> n;
         if (n <= 0) return;
 
-        *arr = new std::vector<Division>;
+        arr = {};
         Division division;
         for (int i = 0;i < n; i++) {
             in >> division;
-            *arr.push_back({ division.get_name(), division.getPlace(), {}, {} });
+            arr.push_back({division});
         }
 
         in.close();
     }
 
-    void add_division(std::vector<Division> *arr) {
+    void add_division(std::vector<Division> arr) {
         if (arr.empty()) {
             std::cout << "First create list of divisions with command 'create'" << std::endl;
             return;
@@ -64,7 +65,7 @@ namespace patient_db {
 
         Division c;
         std::cin >> c;
-        *arr.push_back({ c.get_name(), c.getPlace(), {}, {} });
+        arr.push_back({c});
     }
 
     Division search_division(std::vector<Division> arr, std::string division) {
@@ -91,7 +92,7 @@ namespace patient_db {
         }
     }
 
-    void delete_division(std::vector<Division>* arr) {
+    void delete_division(std::vector<Division> arr) {
         if (arr.empty()) {
             std::cout << "List of divisions doesnt exist" << std::endl;
             return;
@@ -100,18 +101,18 @@ namespace patient_db {
         std::cout << "Enter the name of division you want to delete: ";
         std::string division;
         int id;
-        int n = *arr->size();
+        int n = arr.size();
         std::cin >> division;
         division = to_lower(division);
 
-        if (typeid(search_division(*arr, division)) == typeid(Division)) {
+        if (typeid(search_division(arr, division)) == typeid(Division)) {
             for (int i = 0; i < n; i++) {
-                if (division == to_lower((*arr)[i].get_name())) {
+                if (division == to_lower(arr[i].get_name())) {
                     id = i;
                 }
             }
             for (int i = id; i < n - 1; i++) {
-                (*arr)[i] = (*arr)[i + 1];
+                arr[i] = arr[i + 1];
             }
         }
         else {
