@@ -18,6 +18,7 @@ public:
 	void attachPat(Patient& patient);
 	void setPlaces(int place);
 	int getPlace();
+	std::string get_name();
 
 	friend Division search_division(class Division* arr, int n, std::string division);
 	friend void delete_division(class Division** arr, int* n);

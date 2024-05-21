@@ -1,11 +1,14 @@
 #pragma once
 
 #include <iostream>
+#include <vector>
 
+namespace patient_db {
+	void create_divisions(std::vector<Division> *arr);
+	void write_divisions(std::vector<Division> arr);
+	void read_divisions(std::vector<Division> *arr);
+	void add_division(std::vector<Division> *arr);
+	Division search_division(std::vector<Division> arr, std::string division);
+	void delete_division(std::vector<Division> *arr);
+}
 
-void create_divisions(class Division** arr, int* n);
-void write_divisions(const class Division* arr, int n);
-void read_divisions(class Division** arr, int* n);
-void add_division(class Division** arr, int* n);
-Division search_division(class Division* arr, int n, std::string division);
-void delete_division(class Division** arr, int* n);
