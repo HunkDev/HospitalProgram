@@ -33,6 +33,9 @@
     <ClCompile Include="doctors_db.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
+    <ClCompile Include="time.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Patient.h">
@@ -44,13 +47,10 @@
     <ClInclude Include="database.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="disease.h">
-      <Filter>Файлы заголовков</Filter>
-    </ClInclude>
     <ClInclude Include="doctor.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\..\..\Downloads\doctor.h">
+    <ClInclude Include="division_database.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>

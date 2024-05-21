@@ -133,6 +133,7 @@
     <ClCompile Include="Func.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="patient.cpp" />
+    <ClCompile Include="time.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="database.h" />
