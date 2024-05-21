@@ -18,90 +18,127 @@ int main() {
 	}
 	switch (key) {
 	case 1:
-	{
 		bool w = true;
 		int n;
-		vector<Division> divisions;
+		Division* divisions;
 		while (w) {
 			int key_div;
-			cout << "1-Create, 2-read, 3-search, 4-edit, 5-delete, 6-edit, 7-exit" << endl;
+			cout << "1-Create, 2-read, 3-search, 4-add, 5-delete, 6-save, 7-exit" << endl;
 			cin >> key_div;
 			if (!(cin >> key_div).good()) {
-				cout << "Error" << endl;
-				return;
+				cout << "Error #123-1242135" << endl;
+				return 0;
 			}
 			switch (key_div) {
+				//Ìåòîäû áä äëÿ îòäåëåíèÿ
 			case 1:
-				division_db::create_divisions(divisions);
-				break;
+				if (!arr.empty()) {
+					int var;
+					cout << "Divisions database will delete. Do you really want this?" << endl << "1 = yes, \t 2 = no" << endl;
+					cin >> var;
+					if (var == 2)
+						break;
+					if (var == 1) {
+						division_db::create_divisions(&divisions, &n);
+						break;
+					}
+					else {
+						cout << "ERROR #12-43840812837531251425" << endl;
+						break
+					}
+				}
+				else {
+					division_db::create_divisions(&divisions, &n);
+					break;
+				}
 			case 2:
-				division_db::read_divisions(divisions);
+				division_db::read_divisions(&divisions, &n);
 				break;
 			case 3:
-			{
-				string str;
-				if (!(cin >> str).good()) {
-					cout << "Error" << endl;
-					return;
-				}
-				division_db::search_division(divisions, str);
+				division_db::search_division(&divisions, &n);
 				break;
-			}
 			case 4:
 				//no edit, add
-				division_db::add_division(divisions);
+				division_db::add_division(&divisions, &n);
 				break;
 			case 5:
-				division_db::delete_division(divisions);
+				division_db::delete_division(&divisions, &n);
 				break;
 			case 6:
-				//wtf
-				break;
+				division_db::write_divisions(&divisions, &n)
+					break;
 			case 7:
 				w = false;
 				break;
 			}
 		}
 		break;
-	}
+
 	case 2:
 		bool w = true;
-		int n;
+		//int n;
 		//Doctor* doctors;
+		fstream db("doc_database.txt", ios::out | ios::in);
+		if (!db.is_open()) {
+			cerr << "Error opening file #131-3124132412" << endl;
+			return;
+		}
 		while (w) {
 			int key_doc;
 			cout << "1-Create, 2-read, 3-search, 4-edit, 5-delete, 6-edit, 7-exit" << endl;
 			cin >> key_doc;
 			if (!(cin >> key_doc).good()) {
-				cout << "Error" << endl;
-				return;
+				cout << "Error #123-23415412" << endl;
+				return 0;
 			}
 			switch (key_doc) {
 				//Ìåòîäû áä äëÿ âðà÷à
 			case 1:
-				//create_doc(&doctors, &n);
-				break;
+				if (!arr.empty()) {
+					int var;
+					cout << "Doctors database will delete. Do you really want this?" << endl << "1 = yes, \t 2 = no" << endl;
+					cin >> var;
+					if (var == 2)
+						break;
+					if (var == 1) {
+						doctor_bd::create_doc(db);
+						break;
+					}
+					else {
+						cout << "ERROR #12-43840812837531251426" << endl;
+						break
+					}
+				}
+				else {
+					doctor_bd::create_doc(db);
+					break;
+				}
 			case 2:
 				//read_doc(&doctors, &n);
+				doctor_bd::read_doc(db);
 				break;
 			case 3:
 				//search_doc(&doctors, &n);
+				doctor_bd::search_doc(db);
 				break;
 			case 4:
 				//add, no edit
 				//add_doc(&doctors, &n);
+				doctor_bd::add_doc(db);
 				break;
 			case 5:
 				//delete_doc(&doctors, &n);
+				doctor_bd::delete_doc(db);
 				break;
 			case 6:
-				//hz
+				doctor_bd::write_doc(db);
 				break;
 			case 7:
 				w = false;
 				break;
 			}
 		}
+		db.close();
 		break;
 	case 3:
     bool w = true;
