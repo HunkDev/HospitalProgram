@@ -2,6 +2,7 @@
 
 #include <iostream>
 #include <vector>
+#include "Patient.h"
 
 std::string to_lower(const std::string& str);
 

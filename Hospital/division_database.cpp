@@ -7,7 +7,6 @@
 #include "database.h"
 #include "Division.h"
 
-bool flag = true;
 namespace division_db {
     void create_divisions(std::vector<Division> arr) {
         int n;
@@ -71,7 +70,7 @@ namespace division_db {
     Division search_division(std::vector<Division> arr, std::string division) {
         if (arr.empty()) {
             std::cout << "First create list of divisions with command 'create'" << std::endl;
-            return;
+            return Division();
         }
 
         division = to_lower(division);
@@ -88,7 +87,7 @@ namespace division_db {
         if (flag) return arr[id];
         else {
             std::cout << "There are no matches" << std::endl;
-            return;
+            return Division();
         }
     }
 
@@ -105,7 +104,7 @@ namespace division_db {
         std::cin >> division;
         division = to_lower(division);
 
-        if (typeid(search_division(arr, division)) == typeid(Division)) {
+        if (typeid(division_db::search_division(arr, division)) == typeid(Division)) {
             for (int i = 0; i < n; i++) {
                 if (division == to_lower(arr[i].get_name())) {
                     id = i;

@@ -4,9 +4,11 @@
 #include "Division.h"
 #include "doctor.h"
 #include <list>
+#include <iostream>
+#include <vector>
 using namespace std;
 
-istream& operator >>(istream& in, Patient& pat) {
+istream& operator >>(istream& in, Patient &pat) {
 	cout << "Enter name:";
 	in >> pat._name;
 	cout << "Enter surname:";
@@ -28,30 +30,18 @@ istream& operator >>(istream& in, Patient& pat) {
 
 ostream& operator <<(ostream& out, Patient& pat) {
 	out << " Name: " << pat._name << "Surname: " << pat._surname << " Gender: " << pat._gender << " Age: " << pat._age << " Diagnosis: " << pat._diagnosis << " Doctor`s name: " << pat._doctor << " Status: " << pat._status << endl;
+	return out;
 }
 
-istream& operator >>(istream& in, Doctor& doc) {
+istream& operator >>(istream& in, Doctor &doc) {
 	cout << "Doctor`s name:";
 	string str;
 	in >> str;
-	int len = str.length();
-	if (len < 100) {
-		for (int i = 0; i < len; i++) {
-			doc.fullName[i] = str[i];
-		}
-		for (int i = 0; i < 100; i++) {
-			doc.fullName[i] = str[i];
-		}
-	}
-	else
-		for (int i = 0; i < 100; i++) {
-			doc.fullName[i] = str[i];
-		}
 	return in;
 }
 
 ostream& operator <<(ostream& out, Doctor& doc) {
-	out << "Name:" << doc.fullName << endl;
+	out << "Name:" << doc.name << endl;
 	out << "Patients:";
 	for (Patient& pat : doc.patients) {
 		out << pat << endl;
@@ -64,6 +54,8 @@ istream& operator >>(istream& in, Division& div) {
 	in >> div.name;
 	cout << "Free places: ";
 	in >> div.places;
+
+	return in;
 }
 
 ostream& operator <<(ostream& out, Division& div) {
@@ -74,26 +66,28 @@ ostream& operator <<(ostream& out, Division& div) {
 	out << "Patients:";
 	for (Patient& patient : div.patients)
 		out << patient << endl;
+
+	return out;
 }
 
-const char* Doctor::getFullName() {
-	return fullName;
+string Doctor::getFullName() {
+	return name;
 }
 
 vector<Patient> Doctor::getPatients() {
 	return patients;
 }
 
-void Doctor::addPatient(const Patient& _patient) {
+void Doctor::addPatient(const Patient _patient) {
 	patients.push_back(_patient);
 }
 
-void Division::attachPat(Patient& patient) {
+void Division::attachPat(Patient patient) {
 	patients.push_back(patient);
 	places -= 1;
 }
 
-void Division::attachDoc(Doctor& doctor) {
+void Division::attachDoc(Doctor doctor) {
 	doctors.push_back(doctor);
 	//places_doctors -= 1;
 }
