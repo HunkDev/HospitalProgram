@@ -44,7 +44,7 @@ int main() {
 			vector<Division> divisions;
 			while (w_cs1) {
 				int key_div;
-				cout << "1-Create, 2-read, 3-search, 4-add, 5-delete, 6-exit" << endl;
+				cout << "1-Create, 2-read, 3-search, 4-add, 5-delete, 6-exit 7-attach patient" << endl;
 				std::cin >> key_div;
 				switch (key_div) {
 				case 1:
@@ -86,7 +86,17 @@ int main() {
 					break;
 					w_cs1 = false;
 					break;
+				case 7:
+					cout << "Name of division:" << endl;
+					std::cin >> division;
+					Division div = division_db::search_division(divisions, division);
+					cout << "Name of attaching patient:" << endl;
+					vector<Patient> temp;
+					string name;
+					cin >> name;
+					div.attachPat(patient_db::search_patient(temp, name));
 				}
+				break;
 			}
 			break;
 		}
