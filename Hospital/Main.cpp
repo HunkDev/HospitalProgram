@@ -4,21 +4,19 @@
 #include "Division.h"
 #include "database.h"
 #include "division_database.h"
-#include "doctors_db.h"
 #include "time.h"
+#include "doctors_db.h"
 
 using namespace std;
 
-int Timing(int key) {
+int Timing() {
+	int key;
 	time_t cur_time = time(nullptr);
 	tm ct_cur;
 	localtime_s(&ct_cur, &cur_time);
 	int cur_day = ct_cur.tm_yday;
-	time_t stored_time = read_time();
-	tm ct_store;
-	localtime_s(&ct_store, &stored_time);
-	int store_day = ct_store.tm_yday;
-	if ((cur_time - stored_time) != 0) {
+	int store_day = read_time();
+	if ((cur_time - store_day) != 0) {
 		key = 4;
 		write_time(cur_time);
 	}
@@ -31,8 +29,7 @@ int main() {
 	cout << "1-Division, 2-Doctor, 3-Patient 4-advance time" << endl;
 	int key = 0;
 	bool w;	
-	key = Timing(key);
-
+	key = Timing();
 	if(key != 4)
 		if (!(cin >> key).good()) {
 			cout << "Error" << endl;
@@ -41,9 +38,11 @@ int main() {
 	vector<Division> divisions;
 	fstream db("doc_database.txt", ios::out | ios::in);
 	string division;
-
 	switch (key) {
 	case 1:
+	{
+		bool w = true;
+		vector<Division> divisions;
 		w = true;
 		while (w) {
 			int key_div;
@@ -74,7 +73,6 @@ int main() {
 					division_db::create_divisions(divisions);
 					break;
 				}
-			}
 			case 2:
 				division_db::read_divisions(divisions);
 				break;
@@ -83,7 +81,6 @@ int main() {
 				cin >> division;
 				division_db::search_division(divisions, division);
 				break;
-			}
 			case 4:
 				//no edit, add
 				division_db::add_division(divisions);
@@ -156,7 +153,6 @@ int main() {
 			case 6:
 				w = false;
 				break;
-			}
 		}
 		db.close();
 		break;
@@ -202,7 +198,7 @@ int main() {
 				break;
 			}
 		}
-		}
+	}
 	case 4:
 	{
 		vector<Patient> patients;
