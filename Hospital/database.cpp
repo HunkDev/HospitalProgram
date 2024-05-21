@@ -76,7 +76,7 @@ namespace patient_db {
     Patient search_patient(std::vector<Patient> arr, std::string patient) {
         if (arr.empty()) {
             std::cout << "First create list of patients with command 'create'" << std::endl;
-            return;
+            return Patient();
         }
 
         patient = to_lower(patient);
@@ -93,7 +93,7 @@ namespace patient_db {
         if (flag) return arr[id];
         else {
             std::cout << "There are no matches" << std::endl;
-            return;
+            return Patient();
         }
     }
 
@@ -110,7 +110,7 @@ namespace patient_db {
         std::cin >> patient;
         patient = to_lower(patient);
 
-        if (typeid(search_patient(arr, patient)) == typeid(Patient)) {
+        if (typeid(patient_db::search_patient(arr, patient)) == typeid(Patient)) {
             for (int i = 0; i < n; i++) {
                 if (patient == to_lower(arr[i].getSurname())) {
                     id = i;

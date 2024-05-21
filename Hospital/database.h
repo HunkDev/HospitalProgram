@@ -1,9 +1,9 @@
 #pragma once
 
-#include <iostream>
 #include <vector>
+#include "Patient.h"
 
-std::string to_lower(const std::string& str);
+inline std::string to_lower(const std::string& str);
 
 namespace patient_db {
 	void create_patients(std::vector<Patient> arr);

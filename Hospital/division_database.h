@@ -1,7 +1,7 @@
 #pragma once
 
-#include <iostream>
 #include <vector>
+#include "Division.h"
 
 namespace division_db {
 	void create_divisions(std::vector<Division> arr);

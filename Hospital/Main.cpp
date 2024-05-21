@@ -2,12 +2,10 @@
 #include "Patient.h"
 #include "doctor.h"
 #include "Division.h"
-#include "patient.cpp"
-#include "Func.cpp"
-#include "database.cpp"
+#include "database.h"
 #include "division_database.h"
-#include "doctors_db.cpp"
-#include "time.cpp"
+#include "doctors_db.h"
+#include "time.h"
 
 using namespace std;
 
@@ -31,18 +29,22 @@ int Timing(int key) {
 
 int main() {
 	cout << "1-Division, 2-Doctor, 3-Patient 4-advance time" << endl;
-	int key;
-	Timing(key);
+	int key = 0;
+	bool w;	
+	key = Timing(key);
+
 	if(key != 4)
 		if (!(cin >> key).good()) {
 			cout << "Error" << endl;
 			return 0;
 		}
+	vector<Division> divisions;
+	fstream db("doc_database.txt", ios::out | ios::in);
+	string division;
+
 	switch (key) {
 	case 1:
-	{
-		bool w = true;
-		vector<Division> divisions;
+		w = true;
 		while (w) {
 			int key_div;
 			cout << "1-Create, 2-read, 3-search, 4-add, 5-delete, 6-exit" << endl;
@@ -53,10 +55,7 @@ int main() {
 			}
 			switch (key_div) {
 			case 1:
-			{
-				vector<Division> arr;
-				division_db::read_divisions(arr);
-				if (!arr.empty()) {
+				if (!divisions.empty()) {
 					int var;
 					cout << "Divisions database will delete. Do you really want this?" << endl << "1 = yes, \t 2 = no" << endl;
 					cin >> var;
@@ -80,13 +79,9 @@ int main() {
 				division_db::read_divisions(divisions);
 				break;
 			case 3:
-			{
-				string str;
-				if (!(cin >> str).good()) {
-					cout << "Error" << endl;
-					return;
-				}
-				division_db::search_division(divisions, str);
+				cout << "What division you are looking for?: ";
+				cin >> division;
+				division_db::search_division(divisions, division);
 				break;
 			}
 			case 4:
@@ -105,14 +100,12 @@ int main() {
 		break;
 	}
 	case 2:
-	{
-		bool w = true;
+		w = true;
 		//int n;
 		//Doctor* doctors;
-		fstream db("doc_database.txt", ios::out | ios::in);
 		if (!db.is_open()) {
 			cerr << "Error opening file #131-3124132412" << endl;
-			return;
+			break;
 		}
 		while (w) {
 			int key_doc;
@@ -124,7 +117,7 @@ int main() {
 			}
 			switch (key_doc) {
 			case 1:
-				if (!db == NULL) {
+				if (!db) {
 					int var;
 					cout << "Doctors database will delete. Do you really want this?" << endl << "1 = yes, \t 2 = no" << endl;
 					cin >> var;
@@ -170,7 +163,7 @@ int main() {
 	}
 	case 3:
 	{
-		bool w = true;
+		w = true;
 		vector<Patient> temp;
 		while (w) {
 			int key_pat;
@@ -178,7 +171,7 @@ int main() {
 			cin >> key_pat;
 			if (!key_pat) {
 				cout << "Error" << endl;
-				return;
+				break;
 			}
 			switch (key_pat) {
 			case 1:
@@ -192,7 +185,7 @@ int main() {
 				string str;
 				if (!(cin >> str).good()) {
 					cout << "Error" << endl;
-					return;
+					break;
 				}
 				patient_db::search_patient(temp, str);
 				break;
