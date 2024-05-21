@@ -105,7 +105,7 @@ int main() {
 		break;
 	case 3:
     bool w = true;
-		Patient* temp;
+		vector<Patient> temp;
 		int n;
 		while (w) {
       int key_pat;
@@ -117,15 +117,10 @@ int main() {
 		  }
 			switch (key_pat) {
 			case 1:
-				cout << "n=";
-				if (!(cin >> n).good()) {
-					cout << "Error" << endl;
-					return 0;
-				}
-				create_patients(&temp, &n);
+				patient_db::create_patients(temp);
 				break;
 			case 2:
-				read_patients(&temp, &n);
+				patient_db::read_patients(temp);
 				break;
 			case 3:
 			{
@@ -134,24 +129,15 @@ int main() {
 					cout << "Error" << endl;
 					return;
 				}
-				cout << "n=";
-				if (!(cin >> n).good()) {
-					cout << "Error" << endl;
-					return 0;
-				}
-				search_patient(temp, n, str);
+				patient_db::search_patient(temp, str);
 				break;
 			}
 			case 4:
-				cout << "n=";
-				if (!(cin >> n).good()) {
-					cout << "Error" << endl;
-					return 0;
-				}
-				add_patient(&temp, &n);
+
+				patient_db::add_patient(temp);
 				break;
 			case 5:
-				delete_patient(&temp, &n);
+				patient_db::delete_patient(temp);
 				break;
 			case 6:
 

@@ -135,10 +135,9 @@
     <ClCompile Include="patient.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\..\..\..\Downloads\doctor.h" />
     <ClInclude Include="database.h" />
-    <ClInclude Include="disease.h" />
     <ClInclude Include="Division.h" />
+    <ClInclude Include="division_database.h" />
     <ClInclude Include="doctor.h" />
     <ClInclude Include="Patient.h" />
   </ItemGroup>
