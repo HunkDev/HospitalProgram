@@ -119,6 +119,7 @@ namespace patient_db {
             for (int i = id; i < n - 1; i++) {
                 arr[i] = arr[i + 1];
             }
+            arr.pop_back();
         }
         else {
             std::cout << "This patient doesn't exist" << std::endl;
