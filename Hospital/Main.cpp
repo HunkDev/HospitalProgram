@@ -6,6 +6,8 @@
 #include "patient.cpp"
 #include "Func.cpp"
 #include "database.cpp"
+#include "division_database.h"
+
 using namespace std;
 
 int main() {
@@ -17,26 +19,82 @@ int main() {
 	}
 	switch (key) {
 	case 1:
-		int key_div;
-		cout << "1-Create, 2-read, 3-search, 4-edit, 5-delete, 6-edit, 7-exit" << endl;
-		if (!(cin >> key_div).good()) {
-			cout << "Error" << endl;
-			return 0;
-		}
-		switch(key_div){
-			//Ìåòîäû áä äëÿ îòäåëåíèÿ
+		bool w = true;
+		int n;
+		Division* divisions;
+		while (w) {
+			int key_div;
+			cout << "1-Create, 2-read, 3-search, 4-edit, 5-delete, 6-edit, 7-exit" << endl;
+			cin >> key_div;
+			if (!(cin >> key_div).good()) {
+				cout << "Error" << endl;
+				return 0;
+			}
+			switch (key_div) {
+				//Ìåòîäû áä äëÿ îòäåëåíèÿ
+			case 1:
+				create_divisions(&divisions, &n);
+				break;
+			case 2:
+				read_divisions(&divisions, &n);
+				break;
+			case 3:
+				search_division(&divisions, &n);
+				break;
+			case 4:
+				//no edit, add
+				add_division(&divisions, &n);
+				break;
+			case 5:
+				delete_division(&divisions, &n);
+				break;
+			case 6:
+				//wtf
+				break;
+			case 7:
+				w = false;
+				break;
+			}
 		}
 		break;
 
 	case 2:
-		int key_doc;
-		cout << "1-Create, 2-read, 3-search, 4-edit, 5-delete, 6-edit, 7-exit" << endl;
-		if (!(cin >> key_doc).good()) {
-			cout << "Error" << endl;
-			return 0;
-		}
-		switch (key_doc) {
-			//Ìåòîäû áä äëÿ âðà÷à
+		bool w = true;
+		int n;
+		//Doctor* doctors;
+		while (w) {
+			int key_doc;
+			cout << "1-Create, 2-read, 3-search, 4-edit, 5-delete, 6-edit, 7-exit" << endl;
+			cin >> key_doc;
+			if (!(cin >> key_doc).good()) {
+				cout << "Error" << endl;
+				return 0;
+			}
+			switch (key_doc) {
+				//Ìåòîäû áä äëÿ âðà÷à
+			case 1:
+				//create_doc(&doctors, &n);
+				break;
+			case 2:
+				//read_doc(&doctors, &n);
+				break;
+			case 3:
+				//search_doc(&doctors, &n);
+				break;
+			case 4:
+				//add, no edit
+				//add_doc(&doctors, &n);
+				break;
+			case 5:
+				//delete_doc(&doctors, &n);
+				break;
+			case 6:
+				//hz
+				break;
+			case 7:
+				w = false;
+				break;
+			}
 		}
 		break;
 	case 3:
