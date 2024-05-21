@@ -18,9 +18,10 @@ int main() {
 	}
 	switch (key) {
 	case 1:
+	{
 		bool w = true;
 		int n;
-		Division* divisions;
+		vector<Division> divisions;
 		while (w) {
 			int key_div;
 			cout << "1-Create, 2-read, 3-search, 4-edit, 5-delete, 6-edit, 7-exit" << endl;
@@ -30,12 +31,11 @@ int main() {
 				return;
 			}
 			switch (key_div) {
-				//Ìåòîäû áä äëÿ îòäåëåíèÿ
 			case 1:
-				create_divisions(&divisions, &n);
+				division_db::create_divisions(divisions);
 				break;
 			case 2:
-				read_divisions(&divisions, &n);
+				division_db::read_divisions(divisions);
 				break;
 			case 3:
 			{
@@ -46,12 +46,13 @@ int main() {
 				}
 				division_db::search_division(divisions, str);
 				break;
+			}
 			case 4:
 				//no edit, add
-				add_division(&divisions, &n);
+				division_db::add_division(divisions);
 				break;
 			case 5:
-				delete_division(&divisions, &n);
+				division_db::delete_division(divisions);
 				break;
 			case 6:
 				//wtf
@@ -62,7 +63,7 @@ int main() {
 			}
 		}
 		break;
-
+	}
 	case 2:
 		bool w = true;
 		int n;
