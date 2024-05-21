@@ -18,7 +18,7 @@ int read_time() {
     ifstream in;
     in.open("time.txt");
     if (!in)
-        return;
+        return -1;
     int day;
     in >> day;
     in.close();

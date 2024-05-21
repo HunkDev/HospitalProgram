@@ -1,7 +1,7 @@
 #pragma once
 
-#include <iostream>
 #include <string>
+#include <vector>
 #include <cstring>
 
 class Patient {
@@ -35,6 +35,6 @@ public:
 	 void setStatus(std::string status);
 	 void advance_day();
 
-	 friend Patient search_patient(class Patient* arr, int n, std::string patient);
-	 friend void delete_patient(class Patient** arr, int* n);
+	 friend Patient search_patient(std::vector<Patient> arr, std::string patient);
+	 friend void delete_patient(std::vector<Patient> arr);
 };

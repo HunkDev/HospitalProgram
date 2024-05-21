@@ -2,11 +2,10 @@
 #include "Patient.h"
 #include "doctor.h"
 #include "Division.h"
-#include "patient.cpp"
-#include "Func.cpp"
-#include "database.cpp"
+#include "database.h"
 #include "division_database.h"
-#include "time.cpp"
+#include "doctors_db.h"
+#include "time.h"
 
 using namespace std;
 
@@ -30,17 +29,22 @@ int Timing(int key) {
 
 int main() {
 	cout << "1-Division, 2-Doctor, 3-Patient 4-advance time" << endl;
-	int key;
-	Timing(key);
+	int key = 0;
+	bool w;	
+	key = Timing(key);
+
 	if(key != 4)
 		if (!(cin >> key).good()) {
 			cout << "Error" << endl;
 			return 0;
 		}
+	vector<Division> divisions;
+	fstream db("doc_database.txt", ios::out | ios::in);
+	string division;
+
 	switch (key) {
 	case 1:
-		bool w = true;
-		vector<Division> divisions;
+		w = true;
 		while (w) {
 			int key_div;
 			cout << "1-Create, 2-read, 3-search, 4-add, 5-delete, 6-exit" << endl;
@@ -52,37 +56,39 @@ int main() {
 			switch (key_div) {
 				//Ìåòîäû áä äëÿ îòäåëåíèÿ
 			case 1:
-				if (!arr.empty()) {
+				if (!divisions.empty()) {
 					int var;
 					cout << "Divisions database will delete. Do you really want this?" << endl << "1 = yes, \t 2 = no" << endl;
 					cin >> var;
 					if (var == 2)
 						break;
 					if (var == 1) {
-						division_db::create_divisions(&divisions, &n);
+						division_db::create_divisions(divisions);
 						break;
 					}
 					else {
 						cout << "ERROR #12-43840812837531251425" << endl;
-						break
+						break;
 					}
 				}
 				else {
-					division_db::create_divisions(&divisions, &n);
+					division_db::create_divisions(divisions);
 					break;
 				}
 			case 2:
-				division_db::read_divisions(&divisions, &n);
+				division_db::read_divisions(divisions);
 				break;
 			case 3:
-				division_db::search_division(&divisions, &n);
+				cout << "What division you are looking for?: ";
+				cin >> division;
+				division_db::search_division(divisions, division);
 				break;
 			case 4:
 				//no edit, add
-				division_db::add_division(&divisions, &n);
+				division_db::add_division(divisions);
 				break;
 			case 5:
-				division_db::delete_division(&divisions, &n);
+				division_db::delete_division(divisions);
 				break;
 			case 6:
 					break;
@@ -93,13 +99,12 @@ int main() {
 		break;
 
 	case 2:
-		bool w = true;
+		w = true;
 		//int n;
 		//Doctor* doctors;
-		fstream db("doc_database.txt", ios::out | ios::in);
 		if (!db.is_open()) {
 			cerr << "Error opening file #131-3124132412" << endl;
-			return;
+			break;
 		}
 		while (w) {
 			int key_doc;
@@ -112,41 +117,41 @@ int main() {
 			switch (key_doc) {
 				//Ìåòîäû áä äëÿ âðà÷à
 			case 1:
-				if (!arr.empty()) {
+				if (!db) {
 					int var;
 					cout << "Doctors database will delete. Do you really want this?" << endl << "1 = yes, \t 2 = no" << endl;
 					cin >> var;
 					if (var == 2)
 						break;
 					if (var == 1) {
-						doctor_bd::create_doc(db);
+						doctor_db::create_doc(db);
 						break;
 					}
 					else {
 						cout << "ERROR #12-43840812837531251426" << endl;
-						break
+						break;
 					}
 				}
 				else {
-					doctor_bd::create_doc(db);
+					doctor_db::create_doc(db);
 					break;
 				}
 			case 2:
 				//read_doc(&doctors, &n);
-				doctor_bd::read_doc(db);
+				doctor_db::read_doc();
 				break;
 			case 3:
 				//search_doc(&doctors, &n);
-				doctor_bd::search_doc(db);
+				doctor_db::search_doc(db);
 				break;
 			case 4:
 				//add, no edit
 				//add_doc(&doctors, &n);
-				doctor_bd::add_doc(db);
+				doctor_db::add_doc(db);
 				break;
 			case 5:
 				//delete_doc(&doctors, &n);
-				doctor_bd::delete_doc(db);
+				doctor_db::delete_doc(db);
 				break;
 			case 6:
 				w = false;
@@ -157,7 +162,7 @@ int main() {
 		break;
 	case 3:
 	{
-		bool w = true;
+		w = true;
 		vector<Patient> temp;
 		while (w) {
 			int key_pat;
@@ -165,7 +170,7 @@ int main() {
 			cin >> key_pat;
 			if (!key_pat) {
 				cout << "Error" << endl;
-				return;
+				break;
 			}
 			switch (key_pat) {
 			case 1:
@@ -179,7 +184,7 @@ int main() {
 				string str;
 				if (!(cin >> str).good()) {
 					cout << "Error" << endl;
-					return;
+					break;
 				}
 				patient_db::search_patient(temp, str);
 				break;
