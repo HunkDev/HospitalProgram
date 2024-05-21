@@ -85,7 +85,7 @@ namespace patient_db {
         int n = arr.size();
 
         for (int i = 0; i < n; i++) {
-            if (patient == to_lower(arr[i].getFio())) {
+            if (patient == to_lower(arr[i].getSurname())) {
                 id = i;
                 flag = true;
             }
@@ -103,7 +103,7 @@ namespace patient_db {
             return;
         }
 
-        std::cout << "Enter the name of patient you want to delete: ";
+        std::cout << "Enter the surname of patient you want to delete: ";
         std::string patient;
         int id;
         int n = arr.size();
@@ -112,7 +112,7 @@ namespace patient_db {
 
         if (typeid(search_patient(arr, patient)) == typeid(Patient)) {
             for (int i = 0; i < n; i++) {
-                if (patient == to_lower(arr[i].getFio())) {
+                if (patient == to_lower(arr[i].getSurname())) {
                     id = i;
                 }
             }

@@ -2,14 +2,16 @@
 #include <string>
 #include "Patient.h"
 
-std::string Patient::getFio() { return _fio; }
+std::string Patient::getName() { return _name; }
+std::string Patient::getSurname() { return _surname; }
 std::string Patient::getGender() { return _gender; }
 int Patient::getAge() { return _age; }
 std::string Patient::getDia() { return _diagnosis; }
 std::string Patient::getDoctor() { return _doctor; }
 std::string Patient::getStatus() { return _status; }
 
-void Patient::setFio(std::string fio) { _fio = fio; }
+void Patient::setName(std::string name) { _name = name; }
+void Patient::setSurname(std::string surname) { _surname = surname; }
 void Patient::setGender(std::string gender) { _gender = gender; }
 void Patient::setAge(int age) { _age = age; }
 void Patient::setDia(std::string diagnosis) { _diagnosis = diagnosis; }
