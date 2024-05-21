@@ -103,3 +103,7 @@ void Division::setPlaces(int place) {
 int Division::getPlace() {
 	return places;
 }
+
+std::string Division::get_name() {
+	return name;
+}
