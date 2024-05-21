@@ -13,4 +13,5 @@ namespace patient_db {
 	Patient search_patient(std::vector<Patient> arr, std::string patient);
 	void delete_patient(std::vector<Patient> arr);
 	void advance_time(std::vector<Patient> arr, int days);
+	void print_patients(std::vector<Patient> arr);
 }
