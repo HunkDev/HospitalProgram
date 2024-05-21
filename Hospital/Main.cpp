@@ -27,7 +27,7 @@ int main() {
 			cin >> key_div;
 			if (!(cin >> key_div).good()) {
 				cout << "Error" << endl;
-				return 0;
+				return;
 			}
 			switch (key_div) {
 				//Ìåòîäû áä äëÿ îòäåëåíèÿ
@@ -38,7 +38,13 @@ int main() {
 				read_divisions(&divisions, &n);
 				break;
 			case 3:
-				search_division(&divisions, &n);
+			{
+				string str;
+				if (!(cin >> str).good()) {
+					cout << "Error" << endl;
+					return;
+				}
+				division_db::search_division(divisions, str);
 				break;
 			case 4:
 				//no edit, add
@@ -67,7 +73,7 @@ int main() {
 			cin >> key_doc;
 			if (!(cin >> key_doc).good()) {
 				cout << "Error" << endl;
-				return 0;
+				return;
 			}
 			switch (key_doc) {
 				//Ìåòîäû áä äëÿ âðà÷à
@@ -106,7 +112,7 @@ int main() {
 		  cin >> key_pat;
 		  if (!key_pat) {
 			  cout << "Error" << endl;
-			  return 0;
+			  return;
 		  }
 			switch (key_pat) {
 			case 1:
@@ -125,7 +131,7 @@ int main() {
 				string str;
 				if (!(cin >> str).good()) {
 					cout << "Error" << endl;
-					return 0;
+					return;
 				}
 				cout << "n=";
 				if (!(cin >> n).good()) {
