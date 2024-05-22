@@ -315,11 +315,9 @@ void delete_patient(std::vector<Division>* arr) {
         for (int i = 0; i < arr->size(); i++) {
             if (!((*arr)[i].patients.empty())) {
                 pat_b = true;
-                std::cout << pat_b;
                 break;
             }
         }
-        std::cout << pat_b;
         if (!pat_b) {
             std::cout << "List of patients doesnt exist" << std::endl;
             return;
@@ -378,11 +376,9 @@ void delete_doctor(std::vector<Division>* arr) {
     for (int i = 0; i < arr->size(); i++) {
         if (!((*arr)[i].doctors.empty())) {
             pat_b = true;
-            std::cout << pat_b;
             break;
         }
     }
-    std::cout << pat_b;
     if (!pat_b) {
         std::cout << "List of doctors doesnt exist" << std::endl;
         return;
