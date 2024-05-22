@@ -9,26 +9,40 @@
 
 using namespace std;
 
-int Timing(int key) {
+void Timing(vector<Division> *divisions) {
 	time_t cur_time = time(nullptr);
 	tm ct_cur;
+	vector<Patient> patients;
 	localtime_s(&ct_cur, &cur_time);
 	int cur_day = ct_cur.tm_yday;
 	int store_day = read_time();
 	if ((cur_time - store_day) > 0) {
-		key = 4;
+		for (int i = 0; i < divisions->size(); i++) {
+			for (int j = 0; j < (*divisions)[i].get_patients().size(); j++) {
+				patients.push_back((*divisions)[i].get_patients()[j]);
+			}
+		}
+		int s = (patients.size() - 1);
+		for (int i = 0; i < s; i++) {
+			patients[i].advance_day();
+		}
 		write_time(cur_time);
 	}
 	else
 		write_time(cur_time);
-	return key;
+}
+
+void DayMinus(vector<Division>* divisions, int s) {
+	for (int i = 0; i < s; i++) {
+		for (int j = 0; j < (*divisions)[i].patients.size(); j++)
+		(*divisions)[i].patients[j].advance_day();
+	}
 }
 
 int main() {	
 	int key = 0;
 	bool w;
 	bool moment = true;
-	key = Timing(key);
 	vector<Division> divisions;
 	vector<Patient> temp;
 	fstream db("doc_database.txt", ios::out | ios::in);
@@ -36,11 +50,10 @@ int main() {
 	key = 0;
 	while (moment) {
 		cout << endl << "1-Division, 2-Doctor, 3-Patient 4-advance time 5-exit programm" << endl;
-		if (key != 4)
-			if (!(std::cin >> key).good()) {
-				cout << "Error" << endl;
-				return 0;
-			}
+		if (!(std::cin >> key).good()) {
+			cout << "Error" << endl;
+			return 0;
+		}
 		switch (key) {
 		case 1:
 			w = true;
@@ -61,6 +74,7 @@ int main() {
 							break;
 						if (var == 1) {
 							division_db::create_divisions(&divisions);
+							Timing(&divisions);
 							break;
 						}
 						else {
@@ -77,6 +91,7 @@ int main() {
 					break;
 				case 3:
 					read_divisions(&divisions);
+					Timing(&divisions);
 					break;
 				case 5:
 					division_db::search_division(divisions);
@@ -220,11 +235,13 @@ int main() {
 		{
 			vector<Patient> patients;
 
-			patient_db::read_patients(&patients);
-			int s = (patients.size() - 1);
-			for (int i = 0; i < s; i++) {
-				patients[i].advance_day();
+			for (int i = 0; i < divisions.size(); i++) {
+				for (int j = 0; j < divisions[i].get_patients().size(); j++) {
+					patients.push_back(divisions[i].get_patients()[j]);
+				}
 			}
+			int s = patients.size();
+			DayMinus(&divisions, s);
 			break;
 		}
 		default: {

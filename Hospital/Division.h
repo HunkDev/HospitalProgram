@@ -27,4 +27,5 @@ public:
 	friend void read_divisions(std::vector<Division>* arr);
 	friend void delete_patient(std::vector<Division>* arr);
 	friend void delete_doctor(std::vector<Division>* arr);
+	friend void DayMinus(std::vector<Division>* divisions, int s);
 };
