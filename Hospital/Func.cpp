@@ -23,6 +23,8 @@ istream& operator >>(istream& in, Patient &pat) {
 	//in >> pat._time;
 	cout << "Enter status:";
 	in >> pat._status;
+	cout << "Remaining days";
+	in >> pat._days;
 	return in;
 }
 
@@ -39,6 +41,8 @@ ostream& operator <<(ostream& out, Patient& pat) {
 	out << pat._diagnosis << endl;
 	cout << " Status: ";
 	out << pat._status << endl;
+	cout << "Days:";
+	out << pat._days << endl;
 	return out;
 }
 
