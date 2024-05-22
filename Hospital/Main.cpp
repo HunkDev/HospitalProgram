@@ -14,11 +14,8 @@ int Timing(int key) {
 	tm ct_cur;
 	localtime_s(&ct_cur, &cur_time);
 	int cur_day = ct_cur.tm_yday;
-	time_t stored_time = read_time();
-	tm ct_store;
-	localtime_s(&ct_store, &stored_time);
-	int store_day = ct_store.tm_yday;
-	if ((cur_time - stored_time) != 0) {
+	int store_day = read_time();
+	if ((cur_time - store_day) > 0) {
 		key = 4;
 		write_time(cur_time);
 	}
@@ -37,7 +34,6 @@ int main() {
 	fstream db("doc_database.txt", ios::out | ios::in);
 	string division;
 	key = 0;
-
 	while (moment) {
 		cout << endl << "1-Division, 2-Doctor, 3-Patient 4-advance time 5-exit programm" << endl;
 		if (key != 4)
@@ -45,8 +41,6 @@ int main() {
 				cout << "Error" << endl;
 				return 0;
 			}
-
-
 		switch (key) {
 		case 1:
 			w = true;
@@ -78,7 +72,6 @@ int main() {
 						division_db::create_divisions(&divisions);
 						break;
 					}
-
 				case 2:
 					division_db::write_divisions(divisions);
 					break;
@@ -118,7 +111,6 @@ int main() {
 				}
 			}
 			break;
-
 		case 2:
 				w = true;
 				//int n;
@@ -182,7 +174,6 @@ int main() {
 				}
 				db.close();
 				break;
-
 		case 3:
 		{
 				w = true;
@@ -225,7 +216,6 @@ int main() {
 					}
 				}
 			}
-
 		case 4:
 		{
 			vector<Patient> patients;
@@ -237,8 +227,6 @@ int main() {
 			}
 			break;
 		}
-
-
 		default: {
 			moment = false;
 			break;
