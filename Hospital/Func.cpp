@@ -16,15 +16,29 @@ istream& operator >>(istream& in, Patient &pat) {
 	cout << "Enter gender:";
 	in >> pat._gender;
 	cout << "Enter age:";
-	in >> pat._age;
+	int age;
+	in >> age;
+	while (age < 0 || age > 120) {
+		std::cout << "Incorrect Age!" << std::endl;
+		cout << "Enter age:";
+		in >> age;
+	}
+	pat._age = age;
 	cout << "Enter diagnosis:";
 	in >> pat._diagnosis;
 	//cout << "Enter time of arrival:";
 	//in >> pat._time;
 	cout << "Enter status:";
 	in >> pat._status;
-	cout << "Remaining days";
-	in >> pat._days;
+	cout << "Remaining days: ";
+	int days;
+	in >> days;
+	while (days < 0 || days > 365) {
+		std::cout << "Incorrect days!" << std::endl;
+		cout << "Remaining days: ";
+		in >> days;
+	}
+	pat._days = days;
 	return in;
 }
 
@@ -67,7 +81,14 @@ istream& operator >>(istream& in, Division& div) {
 	in >> div.name;
 
 		cout << "Free places: ";
-	in >> div.places;
+		int places;
+		in >> places;
+		while (places < 1 || places > 200) {
+			std::cout << "Incorrect places!" << std::endl;
+			cout << "Free places: ";
+			in >> places;
+		}
+	div.places = places;
 
 	return in;
 }

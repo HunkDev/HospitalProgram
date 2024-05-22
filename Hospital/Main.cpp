@@ -25,6 +25,7 @@ void Timing(vector<Division> *divisions) {
 		int s = (patients.size() - 1);
 		for (int i = 0; i < s; i++) {
 			patients[i].advance_day();
+			
 		}
 		write_time(cur_time);
 	}
@@ -33,9 +34,13 @@ void Timing(vector<Division> *divisions) {
 }
 
 void DayMinus(vector<Division>* divisions, int s) {
-	for (int i = 0; i < s; i++) {
-		for (int j = 0; j < (*divisions)[i].patients.size(); j++)
-		(*divisions)[i].patients[j].advance_day();
+	for (int i = 0; i < divisions->size(); i++) {
+		for (int j = 0; j < s; j++) {
+			if (!((*divisions)[i].patients.empty())) {
+				(*divisions)[i].patients[j].advance_day();
+			}		
+		}
+			
 	}
 }
 
