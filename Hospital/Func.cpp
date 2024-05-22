@@ -23,6 +23,8 @@ istream& operator >>(istream& in, Patient &pat) {
 	//in >> pat._time;
 	cout << "Enter doctor`s name:";
 	in >> pat._doctor;
+	cout << "Enter division name:";
+	in >> pat._division;
 	cout << "Enter status:";
 	in >> pat._status;
 	return in;

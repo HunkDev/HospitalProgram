@@ -75,7 +75,7 @@ int main() {
 					division_db::create_divisions(&divisions);
 					break;
 				}
-			}
+			
 			case 2:
 				division_db::write_divisions(divisions);
 				break;
@@ -85,7 +85,7 @@ int main() {
 			case 5:
 				division_db::search_division(divisions);
 				break;
-			}
+			
 			case 4:
 				//no edit, add
 				division_db::add_division(&divisions);
@@ -103,7 +103,7 @@ int main() {
 			}
 		}
 		break;
-	}
+	
 	case 2:
 		w = true;
 		//int n;
@@ -167,7 +167,7 @@ int main() {
 		}
 		db.close();
 		break;
-	}
+	
 	case 3:
 	{
 		w = true;

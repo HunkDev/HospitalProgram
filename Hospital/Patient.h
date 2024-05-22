@@ -12,6 +12,7 @@ class Patient {
 	std::string _diagnosis;
 	//time_t?
 	std::string _doctor;
+	std::string _division;
 	std::string _status;
 	int _days;
 public:
