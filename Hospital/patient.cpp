@@ -17,7 +17,6 @@ void Patient::setDia(std::string diagnosis) { _diagnosis = diagnosis; }
 void Patient::setStatus(std::string status) { _status = status; }
 void Patient::advance_day() {
 	if (!(_status == "discharged")) {
-		std::cout << "ok";
 		_days--;
 		if (_days <= 0) {
 			_status = "discharged";

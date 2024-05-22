@@ -55,10 +55,10 @@ istream& operator >>(istream& in, Doctor &doc) {
 
 ostream& operator <<(ostream& out, Doctor& doc) {
 	out << "Name:" << doc.name << endl;
-	out << "Patients:";
-	for (Patient& pat : doc.patients) {
-		out << pat << endl;
-	}
+	//out << "Patients:";
+	//for (Patient& pat : doc.patients) {
+		//out << pat << endl;
+	//}
 	return out;
 }
 
@@ -100,14 +100,6 @@ ostream& operator <<(ostream& out, Division& div) {
 
 string Doctor::getFullName() {
 	return name;
-}
-
-const vector<Patient> Doctor::getPatients() const {
-	return patients;
-}
-
-void Doctor::addPatient(const Patient& _patient) {
-	patients.push_back(_patient);
 }
 
 void Division::attachPat(const Patient& patient) {
