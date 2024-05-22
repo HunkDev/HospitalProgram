@@ -2,10 +2,23 @@
 #include <fstream>
 #include <typeinfo>
 #include <vector>
+#include <sstream>
 #include <string>
 #include "division_database.h"
 #include "database.h"
 #include "Division.h"
+
+std::vector<std::string> split(std::string str) {
+    std::vector<std::string> result;
+    std::istringstream iss(str);
+    std::string token;
+
+    while (std::getline(iss, token, ' ')) {
+        result.push_back(token);
+    }
+
+    return result;
+}
 
 namespace division_db {
     void create_divisions(std::vector<Division> *arr) {
@@ -182,6 +195,72 @@ namespace division_db {
         return;
 
     }
+
+    void add_doctor(std::vector<Division>* arr, std::fstream& db) {
+        if (arr->empty()) {
+            std::cout << "List of divisions doesnt exist" << std::endl;
+            return;
+        }
+        if (!(db.peek() == EOF)) {
+            std::cout << "List of doctors doesnt exist" << std::endl;
+            return;
+        }
+
+        std::string doctor;
+        std::string division;
+        std::cout << "Enter name of doctor which you want to add: ";
+        std::cin >> doctor;
+
+        doctor = to_lower(doctor);
+        bool flag = false;
+        int id = -1;
+        std::string line;
+        std::string name;
+        Doctor doc;
+        int n = 0;
+        std::vector<std::string> doctors;
+        std::ifstream in("doc_database.txt");
+        while (getline(in, line)) {
+            doctors.push_back(split(line)[1]);
+            std::cout << "ok";
+            n++;
+        }
+        in.close();
+
+        for (int i = 0; i < n; i++) {
+            if (doctor == to_lower(doctors[i])) {
+                id = i;
+                flag = true;
+            }
+        }
+        if (!flag) {
+            std::cout << "There are no matches" << std::endl;
+            return;
+        }
+
+        std::cout << "Enter name of division: ";
+        std::cin >> division;
+
+        division = to_lower(division);
+        flag = false;
+        int d_id = -1;
+        n = arr->size();
+
+        for (int i = 0; i < n; i++) {
+            if (division == to_lower((*arr)[i].get_name())) {
+                d_id = i;
+                flag = true;
+            }
+        }
+        if (!flag) {
+            std::cout << "There are no matches" << std::endl;
+            return;
+        }
+
+
+        (*arr)[d_id].attachDoc(doctors[id]);
+        return;
+    }
 }
 
 void read_divisions(std::vector<Division>* arr) {
@@ -197,7 +276,7 @@ void read_divisions(std::vector<Division>* arr) {
 
     *arr = {};
     Division division;
-    Doctor doctor;
+    std::string doctor;
     Patient patient;
     for (int i = 0;i < n; i++) {
         in >> division.name;
@@ -229,4 +308,5 @@ void read_divisions(std::vector<Division>* arr) {
 
     in.close();
 }
+
 

@@ -9,11 +9,11 @@ private:
 	std::string name;
 	int places;
 	std::vector<Patient> patients;
-	std::vector<Doctor> doctors;
+	std::vector<std::string> doctors;
 public:	
 	friend std::istream& operator >>(std::istream& in, Division& div);
 	friend std::ostream& operator <<(std::ostream& out, Division& div);
-	void attachDoc(const Doctor& doctor);
+	void attachDoc(std::string& doctor);
 	void attachPat(const Patient& patient);
 	void setPlaces(int place);
 	void setName(std::string str);

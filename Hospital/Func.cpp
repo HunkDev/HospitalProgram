@@ -79,7 +79,7 @@ ostream& operator <<(ostream& out, Division& div) {
 	std::cout << "Count of doctors: ";
 	out << div.doctors.size() << endl;
 		std::cout << "Doctors:" << std::endl;
-	for (Doctor& doctor : div.doctors)
+	for (std::string& doctor : div.doctors)
 		out << doctor << endl;
 	out << endl;
 
@@ -111,7 +111,7 @@ void Division::attachPat(const Patient& patient) {
 	places -= 1;
 }
 
-void Division::attachDoc(const Doctor& doctor) {
+void Division::attachDoc(std::string& doctor) {
 	doctors.push_back(doctor);
 	//places_doctors -= 1;
 }
