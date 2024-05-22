@@ -261,6 +261,8 @@ namespace division_db {
         (*arr)[d_id].attachDoc(doctors[id]);
         return;
     }
+
+    
 }
 
 void read_divisions(std::vector<Division>* arr) {
@@ -308,5 +310,69 @@ void read_divisions(std::vector<Division>* arr) {
 
     in.close();
 }
+
+void delete_patient(std::vector<Division>* arr) {
+        if (arr->empty()) {
+            std::cout << "List of divisions doesnt exist" << std::endl;
+            return;
+        }
+        bool pat_b = false;
+        for (int i = 0; i < arr->size(); i++) {
+            if (!((*arr)[i].patients.empty())) {
+                pat_b = true;
+                std::cout << pat_b;
+                break;
+            }
+        }
+        std::cout << pat_b;
+        if (!pat_b) {
+            std::cout << "List of patients doesnt exist" << std::endl;
+            return;
+        }
+        std::string division;
+        std::cout << "Enter name of division: ";
+        std::cin >> division;
+
+        division = to_lower(division);
+        bool flag = false;
+        int d_id = -1;
+        int n = arr->size();
+
+        for (int i = 0; i < n; i++) {
+            if (division == to_lower((*arr)[i].get_name())) {
+                d_id = i;
+                flag = true;
+            }
+        }
+        if (!flag) {
+            std::cout << "There are no matches" << std::endl;
+            return;
+        }
+        std::string patient;
+        
+        std::cout << "Enter surname of patient which you want to delete: ";
+        std::cin >> patient;
+
+        patient = to_lower(patient);
+        flag = false;
+        int id = -1;
+        n = (*arr)[d_id].patients.size();
+
+        for (int i = 0; i < n; i++) {
+            if (patient == to_lower((*arr)[d_id].patients[i].getSurname())) {
+                id = i;
+                flag = true;
+            }
+        }
+        if (!flag) {
+            std::cout << "There are no matches" << std::endl;
+            return;
+        }
+
+
+        (*arr)[d_id].patients.erase((*arr)[d_id].patients.begin() + id);
+        return;
+
+    }
 
 

@@ -14,4 +14,5 @@ namespace division_db {
 	void add_patient(std::vector<Division>* arr, std::vector<Patient> patients);
 	void add_doctor(std::vector<Division>* arr, std::fstream& db);
 }
+void delete_patient(std::vector<Division>* arr);
 void read_divisions(std::vector<Division>* arr);
