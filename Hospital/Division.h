@@ -25,4 +25,6 @@ public:
 	friend void delete_division(std::vector<Division> arr);
 	friend void add_patient(std::vector<Division>* arr, std::vector<Patient> patients);
 	friend void read_divisions(std::vector<Division>* arr);
+	friend void delete_patient(std::vector<Division>* arr);
+	friend void delete_doctor(std::vector<Division>* arr);
 };

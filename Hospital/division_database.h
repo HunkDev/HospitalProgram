@@ -16,3 +16,4 @@ namespace division_db {
 }
 void delete_patient(std::vector<Division>* arr);
 void read_divisions(std::vector<Division>* arr);
+void delete_doctor(std::vector<Division>* arr);
