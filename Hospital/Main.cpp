@@ -36,7 +36,6 @@ int main() {
 	vector<Patient> temp;
 	fstream db("doc_database.txt", ios::out | ios::in);
 	string division;
-
 	key = 0;
 
 	while (moment) {
@@ -53,7 +52,7 @@ int main() {
 			w = true;
 			while (w) {
 				int key_div;
-				cout << "1-Create, 2-write, 3-read, 4-add, 5-search, 6-delete, 7-print, 8-add patient 9-exit" << endl;
+				cout << "1-Create, 2-write, 3-read, 4-add, 5-search, 6-delete, 7-print, 8-add patient 9-add doctor 10-exit" << endl;
 				if (!(std::cin >> key_div).good()) {
 					cout << "Error #123-1242135" << endl;
 					return 0;
@@ -104,6 +103,8 @@ int main() {
 				case 8:
 					division_db::add_patient(&divisions, temp);
 					break;
+				case 9:
+					division_db::add_doctor(&divisions, db);
 				default:
 					w = false;
 					break;
