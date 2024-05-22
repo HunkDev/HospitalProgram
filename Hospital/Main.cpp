@@ -55,7 +55,6 @@ int main() {
 				return 0;
 			}
 			switch (key_div) {
-				//Ìåòîäû áä äëÿ îòäåëåíèÿ
 			case 1:
 				if (!divisions.empty()) {
 					int var;
@@ -76,6 +75,7 @@ int main() {
 					division_db::create_divisions(&divisions);
 					break;
 				}
+			}
 			case 2:
 				division_db::write_divisions(divisions);
 				break;
@@ -85,11 +85,13 @@ int main() {
 			case 5:
 				division_db::search_division(divisions);
 				break;
+			}
 			case 4:
 				//no edit, add
 				division_db::add_division(&divisions);
 				break;
 			case 6:
+
 				division_db::delete_division(&divisions);
 				break;
 			case 7:
@@ -101,7 +103,7 @@ int main() {
 			}
 		}
 		break;
-
+	}
 	case 2:
 		w = true;
 		//int n;
@@ -118,7 +120,6 @@ int main() {
 				return 0;
 			}
 			switch (key_doc) {
-				//Ìåòîäû áä äëÿ âðà÷à
 			case 1:
 				if (!db) {
 					int var;
@@ -166,6 +167,7 @@ int main() {
 		}
 		db.close();
 		break;
+	}
 	case 3:
 	{
 		w = true;
@@ -210,11 +212,14 @@ int main() {
 		}
 		}
 	case 4:
+	{
 		vector<Patient> patients;
+
 		patient_db::read_patients(&patients);
 		int s = (patients.size()-1);
 		for (int i = 0; i < s; i++) {
 			patients[i].advance_day();
 		}
+	}
 	}
 }	
