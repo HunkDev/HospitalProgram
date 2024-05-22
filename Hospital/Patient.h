@@ -11,8 +11,6 @@ class Patient {
 	int _age;
 	std::string _diagnosis;
 	//time_t?
-	std::string _doctor;
-	std::string _division;
 	std::string _status;
 	int _days;
 public:
@@ -24,7 +22,6 @@ public:
 	 std::string getName();
 	 std::string getGender();
 	 std::string getDia();
-	 std::string getDoctor();
 	 std::string getStatus();
 
 	 void setName(std::string name);
@@ -32,7 +29,6 @@ public:
 	 void setGender(std::string gender);
 	 void setAge(int age);
 	 void setDia(std::string diagnosis);
-	 void setDoctor(std::string doctor);
 	 void setStatus(std::string status);
 	 void advance_day();
 

@@ -33,13 +33,14 @@ int main() {
 	bool moment = true;
 	key = Timing(key);
 	vector<Division> divisions;
+	vector<Patient> temp;
 	fstream db("doc_database.txt", ios::out | ios::in);
 	string division;
 
 	key = 0;
 
 	while (moment) {
-		cout << "1-Division, 2-Doctor, 3-Patient 4-advance time 5-exit programm" << endl;
+		cout << endl << "1-Division, 2-Doctor, 3-Patient 4-advance time 5-exit programm" << endl;
 		if (key != 4)
 			if (!(std::cin >> key).good()) {
 				cout << "Error" << endl;
@@ -52,7 +53,7 @@ int main() {
 			w = true;
 			while (w) {
 				int key_div;
-				cout << "1-Create, 2-write, 3-read, 4-add, 5-search, 6-delete, 7-print, 8-exit" << endl;
+				cout << "1-Create, 2-write, 3-read, 4-add, 5-search, 6-delete, 7-print, 8-add patient 9-exit" << endl;
 				if (!(std::cin >> key_div).good()) {
 					cout << "Error #123-1242135" << endl;
 					return 0;
@@ -83,7 +84,7 @@ int main() {
 					division_db::write_divisions(divisions);
 					break;
 				case 3:
-					division_db::read_divisions(&divisions);
+					read_divisions(&divisions);
 					break;
 				case 5:
 					division_db::search_division(divisions);
@@ -100,6 +101,9 @@ int main() {
 				case 7:
 					division_db::print_divisions(divisions);
 					break;
+				case 8:
+					division_db::add_patient(&divisions, temp);
+					break;
 				default:
 					w = false;
 					break;
@@ -108,11 +112,6 @@ int main() {
 			break;
 
 		case 2:
-			if (divisions.empty()) {
-				std::cout << "First create divisions" << endl;
-				break;
-			}
-			else {
 				w = true;
 				//int n;
 				//Doctor* doctors;
@@ -175,22 +174,10 @@ int main() {
 				}
 				db.close();
 				break;
-			}
-
 
 		case 3:
 		{
-			if (divisions.empty()) {
-				std::cout << "First create divisions" << endl;
-				break;
-			}
-			else if (!(db.peek() == EOF)) {
-				std::cout << "First create doctors" << std::endl;
-				break;
-			}
-			else {
 				w = true;
-				vector<Patient> temp;
 				while (w) {
 					int key_pat;
 					cout << "1 - Create, 2 - write, 3 - read, 4 - add, 5 - search, 6 - delete, 7 - print, 8 - exit" << endl;
@@ -230,7 +217,6 @@ int main() {
 					}
 				}
 			}
-		}
 
 		case 4:
 		{
