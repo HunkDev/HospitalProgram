@@ -35,6 +35,6 @@ public:
 	 void setStatus(std::string status);
 	 void advance_day();
 
-	 friend Patient search_patient(std::vector<Patient> arr, std::string patient);
+	 friend void search_patient(std::vector<Patient> arr);
 	 friend void delete_patient(std::vector<Patient> arr);
 };
