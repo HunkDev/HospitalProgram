@@ -21,8 +21,6 @@ istream& operator >>(istream& in, Patient &pat) {
 	in >> pat._diagnosis;
 	//cout << "Enter time of arrival:";
 	//in >> pat._time;
-	cout << "Enter doctor`s name:";
-	in >> pat._doctor;
 	cout << "Enter status:";
 	in >> pat._status;
 	return in;
@@ -39,8 +37,6 @@ ostream& operator <<(ostream& out, Patient& pat) {
 	out << pat._age << endl;
 	cout << " Diagnosis: ";
 	out << pat._diagnosis << endl;
-	cout << " Doctor`s name: ";
-	out << pat._doctor << endl;
 	cout << " Status: ";
 	out << pat._status << endl;
 	return out;
@@ -80,11 +76,16 @@ ostream& operator <<(ostream& out, Division& div) {
 		std::cout << "Free places:";
 	out << div.places << endl; 
 
-		std::cout << "Doctors:";
+	std::cout << "Count of doctors: ";
+	out << div.doctors.size() << endl;
+		std::cout << "Doctors:" << std::endl;
 	for (Doctor& doctor : div.doctors)
 		out << doctor << endl;
 	out << endl;
-		std::cout << "Patients:";
+
+	std::cout << "Count of patients: ";
+	out << div.patients.size() << endl;
+		std::cout << "Patients:" << std::endl;
 	for (Patient& patient : div.patients)
 		out << patient << endl;
 	out << endl;
@@ -125,4 +126,12 @@ int Division::getPlace() {
 
 std::string Division::get_name() {
 	return name;
+}
+
+std::vector<Patient> Division::get_patients() {
+	return patients;
+}
+
+void Division::setName(std::string str) {
+	name = str;
 }

@@ -20,6 +20,7 @@ namespace patient_db {
         std::cin >> n;
         if (n <= 0) return;
 
+        arr->clear();
         Patient patient;
         for (int i = 0;i < n; i++) {
             std::cin >> patient;
