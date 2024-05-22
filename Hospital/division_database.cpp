@@ -14,6 +14,7 @@ namespace division_db {
         std::cin >> n;
         if (n <= 0) return;
 
+        arr->clear();
         Division division;
         for (int i = 0;i < n; i++) {
             std::cin >> division;
@@ -147,7 +148,7 @@ namespace division_db {
             }
         }
         if (!flag) {
-            std::cout << "There are no matches";
+            std::cout << "There are no matches" << std::endl;
             return;
         }
 
@@ -166,12 +167,14 @@ namespace division_db {
             }
         }
         if (!flag) {
-            std::cout << "There are no matches";
+            std::cout << "There are no matches" << std::endl;
             return;
         }
 
-        if ((*arr)[d_id].get_patients().size() == (*arr)[d_id].getPlace()) {
-            std::cout << "There are no places in this division";
+        std::cout << (*arr)[d_id].get_patients().size();
+        std::cout << (*arr)[d_id].getPlace();
+        if ((*arr)[d_id].getPlace() == 0) {
+            std::cout << "There are no places in this division" << std::endl;
             return;
         }
 
@@ -187,30 +190,37 @@ void read_divisions(std::vector<Division>* arr) {
 
     int n;
     int m;
+    int k;
     in >> n;
     if (n <= 0) return;
 
 
     *arr = {};
     Division division;
-    std::string name;
-    int places;
+    Doctor doctor;
+    Patient patient;
     for (int i = 0;i < n; i++) {
         in >> division.name;
 
         in >> division.places;
 
         in >> m;
-        if (m > 0) {
-            for (int j = 0; j < n; j++) {
-                in >> division.doctors[j];
+        std::cout << m;
+        division.doctors.clear();
+        if (m > 0) {           
+            for (int j = 0; j < m; j++) {
+                in >> doctor;              
+                division.doctors.push_back(doctor);
             }
         }
 
-        in >> m;
-        if (m > 0) {
-            for (int j = 0; j < n; j++) {
-                in >> division.patients[j];
+        in >> k;
+        std::cout << k;     
+        division.patients.clear();
+        if (k > 0) {           
+            for (int j = 0; j < k; j++) {
+                in >> patient;              
+                division.patients.push_back(patient);
             }
         }
 

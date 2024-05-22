@@ -78,14 +78,14 @@ ostream& operator <<(ostream& out, Division& div) {
 
 	std::cout << "Count of doctors: ";
 	out << div.doctors.size() << endl;
-		std::cout << "Doctors:";
+		std::cout << "Doctors:" << std::endl;
 	for (Doctor& doctor : div.doctors)
 		out << doctor << endl;
 	out << endl;
 
 	std::cout << "Count of patients: ";
 	out << div.patients.size() << endl;
-		std::cout << "Patients:";
+		std::cout << "Patients:" << std::endl;
 	for (Patient& patient : div.patients)
 		out << patient << endl;
 	out << endl;
