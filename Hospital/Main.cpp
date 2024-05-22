@@ -59,7 +59,7 @@ int main() {
 			w = true;
 			while (w) {
 				int key_div;
-				cout << "1-Create, 2-write, 3-read, 4-add, 5-search, 6-delete, 7-print, 8-add patient 9-add doctor 10-delete patient 11-delete doctor 12-exit" << endl;
+				cout <<  "1-Create, 2-write, 3-read, 4-add, 5-search, 6-delete, 7-print, 8-add patient 9-add doctor 10-delete patient 11-delete doctor 12-exit" << endl;
 				if (!(std::cin >> key_div).good()) {
 					cout << "Error #123-1242135" << endl;
 					return 0;
@@ -136,7 +136,7 @@ int main() {
 				//}
 				while (w) {
 					int key_doc;
-					cout << "1-Create, 2-write, 3-read, 4-add, 5-search, 6-delete, 7-exit" << endl;
+					cout << "1-Create, 2-write, 3-read(print), 4-add, 5-search, 6-delete, 7-exit" << endl;
 					if (!(std::cin >> key_doc).good()) {
 						cout << "Error #123-23415412" << endl;
 						return 0;

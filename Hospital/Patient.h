@@ -14,8 +14,10 @@ class Patient {
 	std::string _status;
 	int _days;
 public:
-	 friend std::istream& operator >>(std::istream& in, Patient& pat);
-	 friend std::ostream& operator <<(std::ostream& out, Patient& pat);
+	/// Enter patient's paramethers
+	 friend std::istream& operator >>(std::istream& in, Patient& pat); 
+	 /// Output patient's paramethers
+	 friend std::ostream& operator <<(std::ostream& out, Patient& pat); 
 
 	 int getAge();
 	 std::string getSurname();
@@ -24,14 +26,23 @@ public:
 	 std::string getDia();
 	 std::string getStatus();
 
-	 void setName(std::string name);
-	 void setSurname(std::string surname);
-	 void setGender(std::string gender);
-	 void setAge(int age);
-	 void setDia(std::string diagnosis);
-	 void setStatus(std::string status);
-	 void advance_day();
+	 /// Set name to patient
+	 void setName(std::string name); 
+	 /// Set surname to patient
+	 void setSurname(std::string surname); 
+	 /// Set gender to patient
+	 void setGender(std::string gender); 
+	 /// Set age to patient
+	 void setAge(int age); 
+	 /// Set diagnosis to patient
+	 void setDia(std::string diagnosis); 
+	 /// Set status to patient
+	 void setStatus(std::string status); 
+	 /// Skip day
+	 void advance_day(); 
 
-	 friend void search_patient(std::vector<Patient> arr);
-	 friend void delete_patient(std::vector<Patient> arr);
+	 /// Search patient by name
+	 friend void search_patient(std::vector<Patient> arr); 
+	 /// Delete patient by name
+	 friend void delete_patient(std::vector<Patient> arr); 
 };

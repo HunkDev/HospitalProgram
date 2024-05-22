@@ -4,18 +4,15 @@
 #include "Patient.h"
 class Doctor {
 private:
-    std::string name;
-    std::vector<Patient> patients;
+    std::string name; 
 
 public:
-    friend std::istream& operator >>(std::istream& in, Doctor& doc);
-    friend std::ostream& operator <<(std::ostream& out, Doctor& doc);
+    /// Enter doctor's paramethers
+    friend std::istream& operator >>(std::istream& in, Doctor& doc); 
+    /// Output doctor's paramethers
+    friend std::ostream& operator <<(std::ostream& out, Doctor& doc); 
 
-    void addPatient(const Patient& patient);
+    /// Output doctor's name
+    std::string getFullName(); 
 
-    std::string getFullName();
-    const std::vector<Patient> getPatients() const;
-
-    void saveToFile(std::ofstream& file);
-    void loadFromFile(std::ifstream& file);
 };

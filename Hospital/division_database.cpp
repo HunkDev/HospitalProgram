@@ -184,8 +184,6 @@ namespace division_db {
             return;
         }
 
-        std::cout << (*arr)[d_id].get_patients().size();
-        std::cout << (*arr)[d_id].getPlace();
         if ((*arr)[d_id].getPlace() == 0) {
             std::cout << "There are no places in this division" << std::endl;
             return;
@@ -222,7 +220,6 @@ namespace division_db {
         std::ifstream in("doc_database.txt");
         while (getline(in, line)) {
             doctors.push_back(split(line)[1]);
-            std::cout << "ok";
             n++;
         }
         in.close();
@@ -286,7 +283,6 @@ void read_divisions(std::vector<Division>* arr) {
         in >> division.places;
 
         in >> m;
-        std::cout << m;
         division.doctors.clear();
         if (m > 0) {           
             for (int j = 0; j < m; j++) {
@@ -295,8 +291,7 @@ void read_divisions(std::vector<Division>* arr) {
             }
         }
 
-        in >> k;
-        std::cout << k;     
+        in >> k;    
         division.patients.clear();
         if (k > 0) {           
             for (int j = 0; j < k; j++) {
