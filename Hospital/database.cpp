@@ -117,7 +117,7 @@ namespace patient_db {
         bool flag = false;
 
         for (int i = 0; i < n; i++) {
-            if (patient == to_lower((*arr)[i].getName())) {
+            if (patient == to_lower((*arr)[i].getSurname())) {
                 id = i;
                 flag = true;
             }
