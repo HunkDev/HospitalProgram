@@ -19,6 +19,7 @@ void Timing(vector<Division> *divisions) {
 	if ((cur_time - store_day) > 0) {
 		for (int i = 0; i < divisions->size(); i++) {
 			for (int j = 0; j < (*divisions)[i].get_patients().size(); j++) {
+				srand(time(NULL));
 				patients.push_back((*divisions)[i].get_patients()[j]);
 			}
 		}

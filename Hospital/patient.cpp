@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <ctime>
 #include "Patient.h"
 
 std::string Patient::getName() { return _name; }
@@ -16,10 +17,16 @@ void Patient::setAge(int age) { _age = age; }
 void Patient::setDia(std::string diagnosis) { _diagnosis = diagnosis; }
 void Patient::setStatus(std::string status) { _status = status; }
 void Patient::advance_day() {
-	if (!(_status == "discharged")) {
-		_days--;
-		if (_days <= 0) {
-			_status = "discharged";
-		}
-	}
+    if (!(_status == "discharged")) {
+        //srand(time(NULL));
+        _days--;
+        if (_days <= 0) {
+            //srand(time(NULL));
+            int a = rand() % 10;
+            if (a < 9)
+                _status = "discharged";
+            else
+                _status = "died";
+        }
+    }
 }
